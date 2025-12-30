@@ -138,22 +138,18 @@
       color:var(--text);
     }
 
-    /* HERO BANNER (FULL WIDTH “BLASTED” ACROSS TOP) */
-    .heroBanner{
-      width:100%;
-      background: #000; /* just in case image hasn’t loaded */
-      border-bottom: 1px solid rgba(255,255,255,.06);
-      overflow:hidden;  /* kills any weird edge bleed */
-      height: clamp(260px, 42vw, 560px); /* responsive “cinematic” height */
-    }
-    .heroBanner img{
-      width:100%;
-      height:100%;
-      display:block;
-      object-fit: cover;        /* THIS is what you want */
-      object-position: center;  /* keep shield centered */
-      transform: translateZ(0); /* prevent subpixel jitter */
-    }
+   /* HERO BANNER (FULL WIDTH, NO CROP) */
+.heroBanner{
+  width:100%;
+  background:#000; /* shows behind image if needed */
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+
+.heroBanner img{
+  width:100%;
+  height:auto;     /* key: keeps full image */
+  display:block;
+}
     @media (max-width: 920px){
       .heroBanner{ height: clamp(220px, 52vw, 440px); }
     }
