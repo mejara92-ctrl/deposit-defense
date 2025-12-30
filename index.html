@@ -138,25 +138,26 @@
       color:var(--text);
     }
 
-    /* HERO BANNER (FULL WIDTH “BLASTED” ACROSS TOP) */
-    .heroBanner{
-      width:100%;
-      background: #000; /* just in case image hasn’t loaded */
-      border-bottom: 1px solid rgba(255,255,255,.06);
-      overflow:hidden;  /* kills any weird edge bleed */
-      height: clamp(260px, 42vw, 560px); /* responsive “cinematic” height */
-    }
-    .heroBanner img{
-      width:100%;
-      height:100%;
-      display:block;
-      object-fit: cover;        /* THIS is what you want */
-      object-position: center;  /* keep shield centered */
-      transform: translateZ(0); /* prevent subpixel jitter */
-    }
-    @media (max-width: 920px){
-      .heroBanner{ height: clamp(220px, 52vw, 440px); }
-    }
+   /* HERO BANNER (FULL WIDTH, CINEMATIC CROP, CONTROLLED HEIGHT) */
+.heroBanner{
+  width:100%;
+  background:#000;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  overflow:hidden;
+}
+
+.heroBanner img{
+  width:100%;
+  height: clamp(260px, 36vw, 520px);
+  display:block;
+
+  object-fit: cover;                 /* CROP */
+  object-position: center;           /* keep shield centered */
+}
+@media (max-width: 920px){
+  .heroBanner img{ height: clamp(220px, 52vw, 440px); }
+}
+
 
     /* HERO COPY UNDER BANNER */
     .heroCopy{
