@@ -33,8 +33,9 @@
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Helvetica Neue", sans-serif;
       color:var(--text);
-      background: var(--bg);
+      background: var(--bg); /* keep solid, no shifting */
       line-height:1.35;
+      overflow-x:hidden; /* prevent any horizontal bleed */
     }
 
     a{color:inherit; text-decoration:none}
@@ -137,19 +138,24 @@
       color:var(--text);
     }
 
-    /* HERO BANNER (FULL WIDTH, NO CROPPING) */
+    /* HERO BANNER (FULL WIDTH “BLASTED” ACROSS TOP) */
     .heroBanner{
       width:100%;
-      background: #0b0f14;
+      background: #000; /* just in case image hasn’t loaded */
       border-bottom: 1px solid rgba(255,255,255,.06);
+      overflow:hidden;  /* kills any weird edge bleed */
+      height: clamp(260px, 42vw, 560px); /* responsive “cinematic” height */
     }
     .heroBanner img{
       width:100%;
-      height:auto;          /* key: no crop */
+      height:100%;
       display:block;
-      max-height: 520px;    /* keep it from being absurdly tall */
-      object-fit: contain;  /* key: show full shield/logo */
-      background: #0b0f14;  /* letterbox stays dark */
+      object-fit: cover;        /* THIS is what you want */
+      object-position: center;  /* keep shield centered */
+      transform: translateZ(0); /* prevent subpixel jitter */
+    }
+    @media (max-width: 920px){
+      .heroBanner{ height: clamp(220px, 52vw, 440px); }
     }
 
     /* HERO COPY UNDER BANNER */
@@ -200,6 +206,7 @@
       border: 1px solid rgba(255,255,255,.10);
       border-radius: var(--radius);
       box-shadow: var(--shadow2);
+      overflow:hidden; /* prevents pseudo-elements from bleeding */
     }
     .grid3{
       display:grid;
@@ -231,15 +238,18 @@
       text-align:left;
       position:relative;
       overflow:hidden;
+      isolation:isolate; /* keeps glow contained to each card */
     }
     .priceCard:before{
       content:"";
       position:absolute; inset:-2px;
-      background: radial-gradient(500px 140px at 10% 0%, rgba(27,99,255,.18), transparent 60%),
-                  radial-gradient(450px 120px at 90% 0%, rgba(244,180,0,.18), transparent 60%);
+      background:
+        radial-gradient(500px 140px at 10% 0%, rgba(27,99,255,.18), transparent 60%),
+        radial-gradient(450px 120px at 90% 0%, rgba(244,180,0,.18), transparent 60%);
       pointer-events:none;
+      z-index:0;
     }
-    .priceCard > *{position:relative}
+    .priceCard > *{position:relative; z-index:1;}
     .tier{
       display:flex; align-items:center; justify-content:space-between; gap:10px;
       margin-bottom: 10px;
@@ -382,7 +392,6 @@
       font-size:.86rem;
     }
 
-    /* Utility */
     .spacer{height:10px}
   </style>
 </head>
@@ -413,7 +422,7 @@
   <main id="top">
     <!-- FULL-WIDTH BANNER (NO TEXT OVER IT) -->
     <div class="heroBanner" aria-label="Deposit Defense banner">
-      <img src="assets/deposit-defense-hero.png" alt="Deposit Defense shield logo on a dramatic sky background" loading="eager" />
+      <img src="assets/deposit-defense-hero.png" alt="Deposit Defense shield logo banner" loading="eager" />
     </div>
 
     <!-- HERO COPY BELOW BANNER -->
@@ -445,7 +454,7 @@
       </div>
     </div>
 
-    <!-- PRICING (NEAR TOP) -->
+    <!-- PRICING -->
     <section id="pricing">
       <div class="wrap">
         <div class="sectionTitle">
@@ -572,7 +581,6 @@
       </div>
     </section>
 
-    <!-- WHAT'S INCLUDED (SINGLE SECTION, NO DUPLICATE “PROCESS” COPY) -->
     <section id="included">
       <div class="wrap">
         <div class="sectionTitle">
@@ -620,7 +628,6 @@
       </div>
     </section>
 
-    <!-- WHY IT WORKS (CONVERSION SECTION) -->
     <section id="why">
       <div class="wrap">
         <div class="sectionTitle">
@@ -680,7 +687,6 @@
       </div>
     </section>
 
-    <!-- FAQ (EXPANDED) -->
     <section id="faq">
       <div class="wrap">
         <div class="sectionTitle">
