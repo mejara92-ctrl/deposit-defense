@@ -1,586 +1,168 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <title>Deposit Defense | Move-Out Cleaning in Lawton & Fort Sill</title>
-  <meta name="description" content="Inspection-focused move-out cleaning with photo & invoice documentation. Protect your deposit. Pass your inspection. Serving Lawton & Fort Sill. Call (580) 215-4212." />
-  <meta name="theme-color" content="#0b1220" />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Deposit Defense | Move-Out Cleaning" />
-  <meta property="og:description" content="Inspection-focused move-out cleaning + documentation to protect your deposit. Serving Lawton & Fort Sill. Call (580) 215-4212." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="/assets/deposit-defense-hero.png" />
+  <meta charset="UTF-8" />
+  <title>Deposit Defense – Move-Out Cleaning</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Move-out cleaning with inspection documentation. Protect your deposit and pass your walkthrough." />
 
   <style>
-    :root{
-      --bg: #070b12;
-      --panel: rgba(255,255,255,.06);
-      --panel2: rgba(255,255,255,.08);
-      --text: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.72);
-      --line: rgba(255,255,255,.14);
-      --blue: #1b6cff;
-      --steel: #b7c7d8;
-      --gold: #f5b401;
-      --shadow: 0 18px 60px rgba(0,0,0,.55);
-      --radius: 18px;
-      --max: 1100px;
-    }
-
-    *{ box-sizing: border-box; }
-    html,body{ height:100%; }
-    body{
-      margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: radial-gradient(1200px 600px at 50% -200px, rgba(27,108,255,.18), transparent 60%),
-                  radial-gradient(900px 500px at 90% 10%, rgba(245,180,1,.10), transparent 60%),
-                  var(--bg);
-      color: var(--text);
-      line-height: 1.5;
-    }
-
-    a{ color: inherit; text-decoration: none; }
-    .wrap{ max-width: var(--max); margin: 0 auto; padding: 0 18px; }
-
-    /* Top bar */
-    .topbar{
-      position: sticky; top: 0;
-      z-index: 20;
-      backdrop-filter: blur(10px);
-      background: rgba(7,11,18,.75);
-      border-bottom: 1px solid rgba(255,255,255,.10);
-    }
-    .topbar-inner{
-      display:flex; align-items:center; justify-content:space-between;
-      padding: 12px 0;
-      gap: 10px;
-    }
-    .brand{
-      display:flex; align-items:center; gap: 10px;
-      font-weight: 900;
-      letter-spacing: .6px;
-      text-transform: uppercase;
-    }
-    .brand-badge{
-      width: 34px; height: 34px;
-      border-radius: 10px;
-      background:
-        radial-gradient(circle at 30% 25%, rgba(255,255,255,.22), transparent 42%),
-        linear-gradient(135deg, rgba(27,108,255,.60), rgba(255,255,255,.06));
-      border: 1px solid rgba(255,255,255,.18);
-      box-shadow: 0 10px 25px rgba(0,0,0,.25);
-    }
-    .nav{
-      display:flex; gap: 14px; align-items:center;
-      font-weight: 700;
-      color: var(--muted);
-      font-size: 14px;
-    }
-    .nav a{ padding: 10px 10px; border-radius: 12px; }
-    .nav a:hover{ background: rgba(255,255,255,.06); color: var(--text); }
-
-    .cta{
-      display:flex; gap: 10px; align-items:center;
-    }
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      gap: 10px;
-      padding: 11px 14px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.18);
-      background: rgba(255,255,255,.06);
-      color: var(--text);
-      font-weight: 900;
-      letter-spacing: .2px;
-      box-shadow: 0 10px 30px rgba(0,0,0,.25);
-      transition: transform .12s ease, background .12s ease, border-color .12s ease;
-      user-select: none;
-      white-space: nowrap;
-    }
-    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.08); }
-    .btn-primary{
-      border-color: rgba(245,180,1,.55);
-      background: linear-gradient(180deg, rgba(245,180,1,.92), rgba(245,180,1,.70));
-      color: #111;
-      text-transform: uppercase;
-      letter-spacing: .7px;
-    }
-    .btn-primary:hover{ border-color: rgba(245,180,1,.8); }
-
-    /* Hero */
-    .hero{
-      padding: 22px 0 0;
-    }
-    .hero-card{
-      position: relative;
-      border-radius: 22px;
-      overflow:hidden;
-      border: 1px solid rgba(255,255,255,.14);
-      box-shadow: var(--shadow);
-      background: rgba(255,255,255,.03);
-    }
-    .hero-img{
-      width: 100%;
-      height: auto;
-      display:block;
-    }
-    .hero-overlay{
-      position:absolute;
-      inset: 0;
-      background:
-        linear-gradient(90deg, rgba(7,11,18,.90) 0%, rgba(7,11,18,.55) 40%, rgba(7,11,18,.20) 70%, rgba(7,11,18,.00) 100%),
-        linear-gradient(180deg, rgba(7,11,18,.30) 0%, rgba(7,11,18,.55) 70%, rgba(7,11,18,.75) 100%);
-      pointer-events:none;
-    }
-    .hero-content{
-      position:absolute;
-      left: 22px;
-      right: 22px;
-      bottom: 22px;
-      display:flex;
-      gap: 18px;
-      align-items:flex-end;
-      justify-content:space-between;
-      flex-wrap: wrap;
-    }
-    .hero-text{
-      max-width: 650px;
-    }
-    .kicker{
-      display:inline-flex;
-      gap: 10px;
-      align-items:center;
-      padding: 8px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.18);
-      background: rgba(0,0,0,.28);
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: .8px;
-      font-size: 12px;
-      color: rgba(255,255,255,.86);
-    }
-    .dot{
-      width: 8px; height: 8px; border-radius: 999px;
-      background: var(--gold);
-      box-shadow: 0 0 0 6px rgba(245,180,1,.12);
-    }
-    h1{
-      margin: 12px 0 10px;
-      font-size: clamp(34px, 4.2vw, 56px);
-      line-height: 1.03;
-      letter-spacing: .6px;
-      text-transform: uppercase;
-    }
-    .sub{
+    body {
       margin: 0;
-      color: var(--muted);
-      font-size: 16px;
-      max-width: 62ch;
-    }
-    .hero-actions{
-      display:flex; gap: 10px; flex-wrap:wrap;
-      align-items:center;
-    }
-    .phone{
-      font-weight: 900;
-      color: rgba(255,255,255,.92);
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0b0f14;
+      color: #ffffff;
     }
 
-    /* Sections */
-    section{ padding: 42px 0; }
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 16px;
-    }
-    .card{
-      border-radius: var(--radius);
-      border: 1px solid rgba(255,255,255,.14);
-      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.05));
-      box-shadow: 0 14px 40px rgba(0,0,0,.35);
-      padding: 18px;
-    }
-    .card h2{
-      margin: 0 0 10px;
-      text-transform: uppercase;
-      letter-spacing: .7px;
-      font-size: 18px;
-    }
-    .card p{ margin: 0; color: var(--muted); }
-    .pill{
-      display:inline-flex;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.16);
-      background: rgba(0,0,0,.20);
-      color: rgba(255,255,255,.86);
-      font-weight: 800;
-      font-size: 12px;
-      letter-spacing: .6px;
-      text-transform: uppercase;
+    .hero {
+      position: relative;
+      background: url('/assets/deposit-defense-hero.png') center/cover no-repeat;
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
     }
 
-    .col-7{ grid-column: span 7; }
-    .col-5{ grid-column: span 5; }
-    .col-6{ grid-column: span 6; }
-    .col-4{ grid-column: span 4; }
-    .col-12{ grid-column: span 12; }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+    }
 
-    ul{
-      margin: 10px 0 0;
-      padding-left: 18px;
-      color: rgba(255,255,255,.82);
+    .hero-content {
+      position: relative;
+      max-width: 900px;
+      padding: 20px;
     }
-    li{ margin: 6px 0; color: var(--muted); }
-    li b{ color: rgba(255,255,255,.92); }
 
-    .steps{
-      display:grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin-top: 10px;
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 15px;
     }
-    .step{
-      padding: 14px;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(0,0,0,.18);
-    }
-    .step-num{
-      font-weight: 1000;
-      font-size: 12px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.70);
-    }
-    .step-title{
-      margin: 6px 0 6px;
-      font-weight: 1000;
-      text-transform: uppercase;
-      letter-spacing: .6px;
-    }
-    .step-desc{ margin:0; color: var(--muted); font-size: 14px; }
 
-    .faq details{
-      border: 1px solid rgba(255,255,255,.14);
-      border-radius: 16px;
-      background: rgba(0,0,0,.18);
-      padding: 14px 14px;
+    .hero p {
+      font-size: 1.25rem;
+      margin-bottom: 30px;
+    }
+
+    .cta {
+      display: inline-block;
+      padding: 16px 28px;
+      background: #f5b400;
+      color: #000;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 1.1rem;
+    }
+
+    section {
+      padding: 80px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 2.2rem;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: #121823;
+      padding: 30px;
+      border-radius: 10px;
+    }
+
+    .card h3 {
+      margin-top: 0;
       margin-bottom: 10px;
     }
-    .faq summary{
-      cursor:pointer;
-      font-weight: 900;
-      letter-spacing: .3px;
-      text-transform: uppercase;
-      list-style: none;
-    }
-    .faq summary::-webkit-details-marker { display:none; }
-    .faq details p{ margin: 10px 0 0; }
 
-    footer{
-      padding: 26px 0 40px;
-      border-top: 1px solid rgba(255,255,255,.10);
-      color: rgba(255,255,255,.62);
-      font-size: 13px;
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      background: #06090d;
+      font-size: 0.9rem;
     }
 
-    /* Responsive */
-    @media (max-width: 900px){
-      .nav{ display:none; }
-      .steps{ grid-template-columns: repeat(2, 1fr); }
-      .col-7,.col-5,.col-6,.col-4{ grid-column: span 12; }
-      .hero-content{ bottom: 16px; left: 16px; right: 16px; }
-    }
-    @media (max-width: 520px){
-      .btn{ width: 100%; }
-      .hero-actions{ width: 100%; }
-      .steps{ grid-template-columns: 1fr; }
+    .phone {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #f5b400;
     }
   </style>
-
-  <!-- Local Business Schema (basic) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "Deposit Defense",
-    "description": "Inspection-focused move-out cleaning with photo & invoice documentation to protect your deposit.",
-    "telephone": "+1-580-215-4212",
-    "areaServed": ["Lawton, OK", "Fort Sill, OK"],
-    "serviceType": ["Move-out cleaning", "Inspection-ready cleaning", "Photo documentation", "Invoice documentation"]
-  }
-  </script>
 </head>
 
 <body>
-  <div class="topbar">
-    <div class="wrap topbar-inner">
-      <a class="brand" href="#top" aria-label="Deposit Defense Home">
-        <span class="brand-badge" aria-hidden="true"></span>
-        <span>Deposit Defense</span>
-      </a>
 
-      <nav class="nav" aria-label="Primary">
-        <a href="#why">Why</a>
-        <a href="#included">What’s Included</a>
-        <a href="#process">Process</a>
-        <a href="#faq">FAQ</a>
-      </nav>
-
-      <div class="cta">
-        <a class="btn" href="tel:+15802154212" aria-label="Call Deposit Defense">(580) 215-4212</a>
-        <a class="btn btn-primary" href="#contact">Get a quote</a>
-      </div>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-content">
+      <h1>Protect Your Deposit.<br>Pass Your Inspection.</h1>
+      <p>
+        Professional move-out cleaning with photo and invoice documentation.
+        Built to stand up to landlord and PCS inspections.
+      </p>
+      <a class="cta" href="tel:15802154212">Call (580) 215-4212</a>
     </div>
   </div>
 
-  <main id="top">
-    <div class="wrap hero">
-      <div class="hero-card">
-        <img class="hero-img" src="/assets/deposit-defense-hero.png" alt="Deposit Defense — Protect your deposit. Pass your inspection." />
-        <div class="hero-overlay"></div>
+  <!-- WHAT WE DO -->
+  <section>
+    <h2>What Is Deposit Defense?</h2>
+    <p style="text-align:center; max-width:800px; margin:auto;">
+      Deposit Defense is a move-out cleaning service designed to help renters,
+      military families, and homeowners pass final walkthroughs and protect their
+      security deposit. Every job includes professional documentation.
+    </p>
+  </section>
 
-        <div class="hero-content">
-          <div class="hero-text">
-            <span class="kicker"><span class="dot"></span> Inspection-focused move-out cleaning</span>
-            <h1>Protect your <span style="color:var(--gold);">deposit</span>. Pass your inspection.</h1>
-            <p class="sub">
-              We don’t just clean. We clean to inspection standard and back it up with
-              <b>photo + invoice documentation</b> so you have proof if anything gets disputed.
-              Serving <b>Lawton</b> & <b>Fort Sill</b>.
-            </p>
-          </div>
-
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="tel:+15802154212">Call now</a>
-            <a class="btn" href="#included">See what’s included</a>
-            <div class="phone" style="padding:10px 4px; color: rgba(255,255,255,.78);">
-              Or text/call: <a href="tel:+15802154212" style="color: rgba(255,255,255,.92); font-weight: 1000;">(580) 215-4212</a>
-            </div>
-          </div>
-        </div>
+  <!-- FEATURES -->
+  <section>
+    <h2>What’s Included</h2>
+    <div class="features">
+      <div class="card">
+        <h3>Deep Move-Out Clean</h3>
+        <p>Kitchens, bathrooms, baseboards, floors, appliances, and dusting.</p>
+      </div>
+      <div class="card">
+        <h3>Inspection Photos</h3>
+        <p>Before-and-after photos taken to inspection standards.</p>
+      </div>
+      <div class="card">
+        <h3>Invoice Documentation</h3>
+        <p>Professional invoice for your records and landlord disputes.</p>
+      </div>
+      <div class="card">
+        <h3>PCS Friendly</h3>
+        <p>Built for Fort Sill PCS timelines and walkthrough requirements.</p>
       </div>
     </div>
+  </section>
 
-    <section id="why">
-      <div class="wrap">
-        <div class="grid">
-          <div class="card col-7">
-            <span class="pill">Why Deposit Defense</span>
-            <h2 style="margin-top:10px;">Most cleaners clean. We defend.</h2>
-            <p>
-              Move-out is where deposits get destroyed: dust, baseboards, appliances, bathrooms, blinds,
-              and “gotcha” items landlords love to mark.
-              Our system is built for walkthroughs — clean + documented.
-            </p>
+  <!-- CONTACT -->
+  <section>
+    <h2>Schedule Your Move-Out Clean</h2>
+    <p style="text-align:center;">
+      Call or text to get scheduled. Online booking coming soon.
+    </p>
+    <p class="phone" style="text-align:center;">
+      (580) 215-4212
+    </p>
+  </section>
 
-            <div class="steps" style="margin-top:14px;">
-              <div class="step">
-                <div class="step-num">Focus</div>
-                <div class="step-title">Inspection items</div>
-                <p class="step-desc">We prioritize the spots that cause deductions.</p>
-              </div>
-              <div class="step">
-                <div class="step-num">Standard</div>
-                <div class="step-title">Move-out grade</div>
-                <p class="step-desc">Not “maintenance clean.” Deep, detailed.</p>
-              </div>
-              <div class="step">
-                <div class="step-num">Proof</div>
-                <div class="step-title">Photo set</div>
-                <p class="step-desc">Clear photos for your records.</p>
-              </div>
-              <div class="step">
-                <div class="step-num">Paperwork</div>
-                <div class="step-title">Invoice</div>
-                <p class="step-desc">Professional documentation you can share.</p>
-              </div>
-            </div>
-          </div>
+  <footer>
+    Serving Lawton & Fort Sill · Deposit Defense © 2025
+  </footer>
 
-          <div class="card col-5">
-            <span class="pill">Perfect for</span>
-            <h2 style="margin-top:10px;">PCS / renters / final walkthroughs</h2>
-            <ul>
-              <li><b>PCS moves</b> where timing matters</li>
-              <li><b>Renters</b> who want their deposit back</li>
-              <li><b>Busy families</b> who want it handled</li>
-              <li><b>Landlord standards</b> (inspection-ready)</li>
-            </ul>
-
-            <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
-              <a class="btn btn-primary" href="tel:+15802154212">Call (580) 215-4212</a>
-              <a class="btn" href="#contact">Request a quote</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="included">
-      <div class="wrap">
-        <div class="grid">
-          <div class="card col-6">
-            <span class="pill">What’s included</span>
-            <h2 style="margin-top:10px;">Move-out cleaning essentials</h2>
-            <ul>
-              <li><b>Kitchens:</b> counters, sink, exterior appliances, stovetop, cabinet fronts</li>
-              <li><b>Bathrooms:</b> shower/tub, toilet, vanity, mirrors, fixtures</li>
-              <li><b>Floors:</b> vacuum + mop (detail edges)</li>
-              <li><b>Detail:</b> baseboards, light dusting, switches, doors/handles</li>
-            </ul>
-          </div>
-
-          <div class="card col-6">
-            <span class="pill">Deposit Defense add-on</span>
-            <h2 style="margin-top:10px;">Documentation package</h2>
-            <ul>
-              <li><b>Photo documentation</b> (key rooms + problem areas)</li>
-              <li><b>Invoice documentation</b> for your records</li>
-              <li><b>Checklist approach</b> aimed at inspection items</li>
-            </ul>
-            <p style="margin-top:12px;">
-              This is what separates a normal cleaning from a “deposit defense” clean.
-            </p>
-          </div>
-
-          <div class="card col-12">
-            <span class="pill">Optional services</span>
-            <h2 style="margin-top:10px;">If you need the full reset</h2>
-            <div class="grid" style="margin-top:10px;">
-              <div class="card col-4" style="background: rgba(0,0,0,.18);">
-                <h2>Trash-out</h2>
-                <p>Leftover items, bags, light debris removal.</p>
-              </div>
-              <div class="card col-4" style="background: rgba(0,0,0,.18);">
-                <h2>Odor treatment</h2>
-                <p>Smoke/pets/strong smells (case-by-case).</p>
-              </div>
-              <div class="card col-4" style="background: rgba(0,0,0,.18);">
-                <h2>Touch-ups</h2>
-                <p>Small wall scuffs, basic patch/touch-up options.</p>
-              </div>
-            </div>
-            <p style="margin-top:12px; color: rgba(255,255,255,.65);">
-              We’ll confirm what you need on the phone and quote it cleanly.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="process">
-      <div class="wrap">
-        <div class="grid">
-          <div class="card col-7">
-            <span class="pill">Process</span>
-            <h2 style="margin-top:10px;">Simple. Fast. Inspection-ready.</h2>
-            <div class="steps">
-              <div class="step">
-                <div class="step-num">Step 1</div>
-                <div class="step-title">Call / text</div>
-                <p class="step-desc">Tell us bedrooms/baths + date needed.</p>
-              </div>
-              <div class="step">
-                <div class="step-num">Step 2</div>
-                <div class="step-title">We quote</div>
-                <p class="step-desc">Clear price and scope. No weird surprises.</p>
-              </div>
-              <div class="step">
-                <div class="step-num">Step 3</div>
-                <div class="step-title">We clean</div>
-                <p class="step-desc">Focused on the items that trigger deductions.</p>
-              </div>
-              <div class="step">
-                <div class="step-num">Step 4</div>
-                <div class="step-title">We document</div>
-                <p class="step-desc">Photos + invoice delivered for your records.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="card col-5">
-            <span class="pill">Service area</span>
-            <h2 style="margin-top:10px;">Lawton & Fort Sill</h2>
-            <p>
-              We serve Lawton and the Fort Sill area. If you’re slightly outside that range,
-              call anyway — we’ll tell you straight if we can take it.
-            </p>
-
-            <div style="margin-top:14px;">
-              <a class="btn btn-primary" href="tel:+15802154212">Call (580) 215-4212</a>
-              <a class="btn" href="#faq" style="margin-left:10px;">Read FAQ</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="faq">
-      <div class="wrap">
-        <div class="grid">
-          <div class="card col-12 faq">
-            <span class="pill">FAQ</span>
-            <h2 style="margin-top:10px;">Quick answers</h2>
-
-            <details>
-              <summary>How fast can you schedule?</summary>
-              <p>Depends on the week. Call/text and we’ll give you the earliest openings immediately.</p>
-            </details>
-
-            <details>
-              <summary>Do you guarantee I’ll get my deposit back?</summary>
-              <p>No one can guarantee what a landlord will do — but we clean to inspection items and provide documentation so you’re in the strongest possible position.</p>
-            </details>
-
-            <details>
-              <summary>What do you need from me before the clean?</summary>
-              <p>Ideally the place is empty (or almost empty). Utilities on is helpful. If there’s heavy trash or items left behind, ask about trash-out.</p>
-            </details>
-
-            <details>
-              <summary>Is this “deep clean” or “move-out clean”?</summary>
-              <p>This is move-out focused: kitchens/baths + detail items that usually trigger deductions (baseboards, edges, touch points). We’ll confirm scope on the phone.</p>
-            </details>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="wrap">
-        <div class="card" style="padding: 22px;">
-          <span class="pill">Contact</span>
-          <h2 style="margin-top:10px;">Get a quote (fast)</h2>
-          <p style="margin-bottom:14px;">
-            Call or text and we’ll quote you quickly.
-            Tell us: <b>bed/bath</b>, <b>approx sq ft (if you know)</b>, and <b>move-out date</b>.
-          </p>
-          <div style="display:flex; gap:10px; flex-wrap:wrap;">
-            <a class="btn btn-primary" href="tel:+15802154212">Call (580) 215-4212</a>
-            <a class="btn" href="sms:+15802154212">Text us</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <footer>
-      <div class="wrap">
-        <div style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;">
-          <div>© <span id="y"></span> Deposit Defense. All rights reserved.</div>
-          <div>Serving Lawton & Fort Sill • <a href="tel:+15802154212" style="font-weight:900; color: rgba(255,255,255,.78);">(580) 215-4212</a></div>
-        </div>
-      </div>
-    </footer>
-  </main>
-
-  <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>
