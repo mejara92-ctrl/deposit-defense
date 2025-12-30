@@ -2,573 +2,630 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Deposit Defense — lease-style move-out cleaning with carpet extraction and documentation included. Built to reduce surprise landlord deductions. Serving Lawton & Fort Sill." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Deposit Defense — Move-Out Cleaning (Lawton & Fort Sill)</title>
+  <meta name="description" content="Lease-style move-out cleaning built for inspections. Carpet extraction + documentation included. Lawton & Fort Sill. Call or text (580) 215-4212." />
+  <meta name="theme-color" content="#070A12" />
 
   <style>
     :root{
-      --bg0:#05080f;
-      --bg1:#070c16;
+      --bg:#070A12;
+      --bg2:#05070c;
       --card: rgba(255,255,255,.06);
       --card2: rgba(255,255,255,.08);
       --stroke: rgba(255,255,255,.12);
-      --text:#e9edf6;
-      --muted: rgba(233,237,246,.72);
-      --muted2: rgba(233,237,246,.58);
-      --gold:#f4b400;
-      --gold2:#ffcc33;
-      --blue:#1a3d7a;
-      --shadow: 0 18px 60px rgba(0,0,0,.55);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.72);
+      --muted2: rgba(255,255,255,.58);
+      --gold:#f5c84b;
+      --gold2:#ffcf57;
+      --blue:#2d5bff;
+      --shadow: 0 18px 55px rgba(0,0,0,.55);
       --radius: 18px;
-      --radius2: 26px;
-      --max: 1120px;
+
+      /* HERO TUNING (if logo looks slightly high/low, tweak the % below) */
+      --hero-pos: 50% 38%;
+      --maxw: 1120px;
     }
+
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
       color:var(--text);
-      background:
-        radial-gradient(1200px 600px at 50% -10%, rgba(26,61,122,.45), transparent 60%),
-        radial-gradient(900px 420px at 85% 10%, rgba(244,180,0,.18), transparent 55%),
-        radial-gradient(900px 520px at 12% 18%, rgba(244,180,0,.12), transparent 60%),
-        linear-gradient(180deg, var(--bg1), var(--bg0) 40%, #04060b 100%);
+      background: radial-gradient(1200px 700px at 20% 0%, rgba(38,88,255,.22), transparent 60%),
+                  radial-gradient(900px 700px at 80% 10%, rgba(245,200,75,.12), transparent 55%),
+                  linear-gradient(180deg, var(--bg), var(--bg2) 60%, #04060b);
       overflow-x:hidden;
     }
-    a{color:inherit}
-    .wrap{max-width:var(--max); margin:0 auto; padding:0 18px}
-    .topbar{
-      position:sticky; top:0; z-index:50;
-      backdrop-filter: blur(10px);
-      background: linear-gradient(180deg, rgba(6,10,18,.86), rgba(6,10,18,.52));
-      border-bottom:1px solid rgba(255,255,255,.08);
+
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:var(--maxw); margin:0 auto; padding:0 18px;}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      padding:12px 16px;
+      border-radius: 999px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.06);
+      color:var(--text);
+      font-weight:800;
+      letter-spacing:.2px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      white-space:nowrap;
     }
-    .topbar-inner{
+    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.09)}
+    .btn.primary{
+      background: linear-gradient(180deg, var(--gold2), var(--gold));
+      color:#111;
+      border-color: rgba(0,0,0,.25);
+      box-shadow: 0 18px 45px rgba(245,200,75,.22);
+    }
+    .btn.primary:hover{background: linear-gradient(180deg, #ffd971, var(--gold))}
+    .btn.small{padding:10px 14px; font-size:14px}
+
+    /* TOP NAV */
+    .nav{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(12px);
+      background: linear-gradient(180deg, rgba(7,10,18,.92), rgba(7,10,18,.65));
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .navbar{
       display:flex; align-items:center; justify-content:space-between;
-      gap:14px; padding:12px 0;
+      padding:12px 0;
+      gap:14px;
     }
     .brand{
-      display:flex; align-items:center; gap:10px; min-width: 210px;
-      font-weight:800; letter-spacing:.6px;
+      display:flex; align-items:center; gap:10px;
+      font-weight:900;
+      letter-spacing:.3px;
+      text-transform:uppercase;
+      font-size:14px;
     }
     .brand-dot{
-      width:12px; height:12px; border-radius:6px;
-      background: radial-gradient(circle at 30% 30%, #7fb2ff, #1c3d7a 55%, #0b1b3a);
-      box-shadow: 0 0 0 3px rgba(255,255,255,.06);
+      width:10px; height:10px; border-radius:999px;
+      background: radial-gradient(circle at 30% 30%, #86a7ff, #2d5bff);
+      box-shadow: 0 0 0 3px rgba(45,91,255,.20);
     }
-    .nav{
-      display:flex; align-items:center; justify-content:center;
-      gap:18px; flex:1;
-      font-size:14px; color:var(--muted);
+    .navlinks{
+      display:flex; gap:16px; align-items:center;
+      color: var(--muted);
+      font-weight:700;
+      font-size:14px;
     }
-    .nav a{
-      text-decoration:none; padding:8px 10px; border-radius:10px;
+    .navlinks a{padding:10px 10px; border-radius:999px}
+    .navlinks a:hover{background: rgba(255,255,255,.06); color:var(--text)}
+    .navcta{display:flex; gap:10px; align-items:center}
+
+    @media (max-width: 900px){
+      .navlinks{display:none}
     }
-    .nav a:hover{background: rgba(255,255,255,.06); color:var(--text)}
-    .actions{
-      display:flex; align-items:center; gap:10px; min-width: 260px; justify-content:flex-end;
+
+    /* HERO (FULL-WIDTH IMAGE BLASTED ACROSS TOP) */
+    .hero{
+      position:relative;
+      min-height: 520px;
+      display:flex;
+      align-items:flex-end;
+      padding: 0;
+      overflow:hidden;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .hero::before{
+      content:"";
+      position:absolute; inset:0;
+      /* full-width background image */
+      background-image: url("assets/deposit-defense-hero.png");
+      background-size: cover;
+      background-repeat:no-repeat;
+      background-position: var(--hero-pos);
+      filter: saturate(1.05) contrast(1.05);
+      transform: scale(1.02);
+    }
+    .hero::after{
+      content:"";
+      position:absolute; inset:0;
+      /* This is what makes text readable + prevents “side panel color shifts” */
+      background:
+        radial-gradient(1000px 520px at 50% 15%, rgba(0,0,0,.15), rgba(0,0,0,.65) 70%),
+        linear-gradient(180deg, rgba(7,10,18,.05), rgba(7,10,18,.95) 78%, rgba(5,7,12,1));
+    }
+
+    .hero-content{
+      position:relative;
+      width:100%;
+      padding: 34px 0 40px;
     }
     .pill{
       display:inline-flex; align-items:center; gap:10px;
-      padding:10px 14px; border-radius:999px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(0,0,0,.22);
-      text-decoration:none;
-      font-weight:700;
-      white-space:nowrap;
-    }
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      padding:10px 14px; border-radius:999px;
-      border:1px solid rgba(255,255,255,.08);
-      background: rgba(255,255,255,.06);
-      text-decoration:none;
-      font-weight:800;
-      white-space:nowrap;
-    }
-    .btn-primary{
-      background: linear-gradient(180deg, var(--gold2), var(--gold));
-      color:#141414;
-      border:1px solid rgba(0,0,0,.25);
-      box-shadow: 0 16px 40px rgba(244,180,0,.18);
-    }
-    .btn-primary:hover{filter:brightness(1.03)}
-    .btn:hover{filter:brightness(1.05)}
-    .hero{
-      padding:22px 0 10px;
-    }
-
-    /* HERO IMAGE: ALWAYS show full logo, centered, no crop */
-    .hero-banner{
-      border-radius: var(--radius2);
-      background:
-        radial-gradient(900px 300px at 50% 0%, rgba(26,61,122,.55), rgba(0,0,0,.0) 65%),
-        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
-      border:1px solid rgba(255,255,255,.12);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      padding: 18px;
-    }
-    .hero-banner-inner{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      width:100%;
-      min-height: 340px; /* the “box” height */
-    }
-    .hero-banner img{
-      width: 100%;
-      height: 100%;
-      max-height: 340px;
-      object-fit: contain;         /* KEY: no cropping */
-      object-position: center;      /* KEY: centered */
-      display:block;
-      filter: drop-shadow(0 18px 35px rgba(0,0,0,.55));
-    }
-    @media (min-width: 980px){
-      .hero-banner-inner{min-height: 360px;}
-      .hero-banner img{max-height: 360px;}
-    }
-    @media (max-width: 640px){
-      .hero-banner-inner{min-height: 240px;}
-      .hero-banner img{max-height: 240px;}
-      .nav{display:none;}
-      .brand{min-width:auto}
-      .actions{min-width:auto}
-    }
-
-    .tagline{
-      margin:18px auto 0;
-      max-width: 920px;
-      text-align:center;
-    }
-    .kicker{
-      display:inline-flex; align-items:center; gap:10px;
       padding:7px 12px;
       border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.14);
       background: rgba(0,0,0,.28);
-      color: var(--muted);
+      color:rgba(255,255,255,.88);
+      font-weight:800;
       font-size:13px;
-      margin-bottom:12px;
-    }
-    .kdot{width:8px;height:8px;border-radius:4px;background:var(--gold); box-shadow:0 0 0 3px rgba(244,180,0,.12)}
-    h1{
-      margin:8px 0 10px;
-      font-size: clamp(34px, 4vw, 52px);
-      line-height:1.06;
-      letter-spacing:-.5px;
-    }
-    .accent{color:var(--gold2)}
-    .sub{
-      margin:0 auto 16px;
-      color: var(--muted);
-      font-size: 16px;
-      max-width: 860px;
-    }
-    .cta-row{
-      display:flex; align-items:center; justify-content:center;
-      gap:10px; flex-wrap:wrap;
-      margin-top: 14px;
-    }
-    .fineprint{
-      margin:10px auto 0;
-      max-width: 880px;
-      color: var(--muted2);
-      font-size: 12px;
-      line-height:1.45;
-    }
-
-    /* Sections */
-    section{padding:26px 0}
-    .section-title{
-      display:flex; align-items:flex-end; justify-content:space-between; gap:12px; flex-wrap:wrap;
-      margin-bottom: 12px;
-    }
-    .section-title h2{
-      margin:0;
-      font-size: 22px;
       letter-spacing:.2px;
     }
-    .section-title p{
-      margin:0;
+    .pill .dot{
+      width:8px; height:8px; border-radius:999px; background: var(--gold);
+      box-shadow: 0 0 0 4px rgba(245,200,75,.18);
+    }
+
+    .h1{
+      margin:14px 0 10px;
+      font-size: clamp(34px, 4.2vw, 56px);
+      line-height: 1.02;
+      letter-spacing: -.6px;
+      font-weight: 950;
+      text-align:center;
+    }
+    .h1 .accent{color: var(--gold)}
+    .sub{
+      margin: 0 auto;
+      max-width: 820px;
       color: var(--muted);
-      font-size: 13px;
+      font-size: 16px;
+      line-height: 1.55;
+      text-align:center;
     }
-    .grid-3{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:14px;
-    }
-    @media (max-width: 980px){ .grid-3{grid-template-columns: 1fr} }
-
-    .card{
-      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04));
-      border:1px solid rgba(255,255,255,.12);
-      border-radius: var(--radius);
-      box-shadow: 0 10px 40px rgba(0,0,0,.35);
-      padding:16px;
-    }
-    .card h3{margin:0 0 6px; font-size: 15px; letter-spacing:.2px}
-    .card p{margin:0; color: var(--muted); font-size: 13px; line-height:1.5}
-    .price{
-      display:flex; align-items:flex-end; justify-content:space-between; gap:10px;
-      margin-top:10px;
-    }
-    .price strong{
-      font-size: 32px; letter-spacing:-.5px;
-    }
-    .badge{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:6px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(0,0,0,.22);
-      color: var(--muted);
-      font-size:12px;
-      margin-top:10px;
-    }
-    .badge b{color:var(--text)}
-    .ul{
-      margin:10px 0 0;
-      padding:0; list-style:none;
-      color: var(--muted);
-      font-size:13px;
-      line-height:1.55;
-    }
-    .ul li{padding-left:18px; position:relative; margin:6px 0}
-    .ul li:before{
-      content:"";
-      width:7px; height:7px; border-radius:4px;
-      background: rgba(244,180,0,.9);
-      position:absolute; left:0; top:.55em;
-      box-shadow:0 0 0 3px rgba(244,180,0,.12);
-    }
-
-    /* Add-ons grid */
-    .grid-2{display:grid; grid-template-columns: 1fr 1fr; gap:14px;}
-    @media (max-width: 980px){ .grid-2{grid-template-columns: 1fr} }
-
-    .addon{
-      display:flex; align-items:flex-start; justify-content:space-between; gap:12px;
-    }
-    .addon .name{font-weight:800}
-    .addon .range{color:var(--gold2); font-weight:900; white-space:nowrap}
-    .small{font-size:12px; color: var(--muted2); margin-top:6px; line-height:1.45}
-
-    /* Deposit example */
-    .example{
-      display:grid;
-      grid-template-columns: 1.25fr .75fr;
-      gap:14px;
-      align-items:stretch;
-    }
-    @media (max-width: 980px){ .example{grid-template-columns: 1fr} }
-    .example .big{
-      font-size: 14px; color: var(--muted); line-height: 1.6;
-    }
-    .math{
-      background: linear-gradient(180deg, rgba(244,180,0,.12), rgba(255,255,255,.04));
-      border:1px solid rgba(244,180,0,.18);
-      border-radius: var(--radius);
-      padding:14px;
+    .hero-actions{
+      margin-top: 16px;
       display:flex;
-      flex-direction:column;
+      gap:10px;
       justify-content:center;
-      gap:8px;
+      flex-wrap:wrap;
     }
-    .row{
-      display:flex; align-items:center; justify-content:space-between; gap:10px;
-      font-size: 13px; color: var(--muted);
+    .legal-note{
+      margin-top: 12px;
+      color: rgba(255,255,255,.48);
+      font-size: 12px;
+      line-height: 1.45;
+      text-align:center;
+      max-width: 900px;
+      margin-left:auto; margin-right:auto;
     }
-    .row b{color: var(--text)}
-    .row.total{border-top:1px solid rgba(255,255,255,.12); padding-top:10px; margin-top:6px}
-    .row.total b{color: var(--gold2)}
-    .note{font-size: 12px; color: var(--muted2); line-height:1.45}
 
-    /* FAQ */
-    details{
-      border:1px solid rgba(255,255,255,.12);
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      border-radius: 14px;
-      padding: 12px 14px;
-      box-shadow: 0 8px 30px rgba(0,0,0,.25);
+    @media (max-width: 700px){
+      .hero{min-height: 460px}
+      .hero-content{padding: 26px 0 34px}
     }
-    details + details{margin-top:10px}
-    summary{
-      cursor:pointer;
+
+    /* SECTIONS */
+    section{padding: 42px 0}
+    .section-title{
+      display:flex; align-items:center; gap:10px;
+      color: rgba(255,255,255,.88);
       font-weight: 900;
-      list-style:none;
-      outline:none;
+      letter-spacing:.4px;
+      text-transform: uppercase;
+      font-size: 12px;
+      margin-bottom: 10px;
     }
-    summary::-webkit-details-marker{display:none}
-    details p{
-      margin:10px 0 0;
+    .section-title .dot{
+      width:8px; height:8px; border-radius:999px; background: var(--gold);
+      box-shadow: 0 0 0 4px rgba(245,200,75,.16);
+    }
+    .section-h2{
+      margin: 0 0 10px;
+      font-size: clamp(22px, 2.6vw, 34px);
+      font-weight: 950;
+      letter-spacing: -.3px;
+    }
+    .section-p{
+      margin:0 0 18px;
       color: var(--muted);
-      font-size: 13px;
+      max-width: 900px;
       line-height: 1.6;
     }
 
-    /* Footer */
-    footer{
-      padding:24px 0 36px;
-      color: var(--muted2);
-      font-size: 12px;
-    }
-    .footer-card{
-      border:1px solid rgba(255,255,255,.10);
+    /* CARDS / GRID */
+    .grid3{display:grid; grid-template-columns: repeat(3, 1fr); gap:16px;}
+    .grid2{display:grid; grid-template-columns: repeat(2, 1fr); gap:16px;}
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.05));
+      border: 1px solid rgba(255,255,255,.12);
       border-radius: var(--radius);
-      background: rgba(0,0,0,.20);
-      padding:14px;
+      box-shadow: var(--shadow);
+      padding: 18px;
     }
-    .footer-row{display:flex; align-items:flex-start; justify-content:space-between; gap:12px; flex-wrap:wrap}
-    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}
+    .card h3{margin:0 0 8px; font-weight: 950; letter-spacing:-.2px}
+    .card p{margin:0; color: var(--muted); line-height:1.55}
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      font-size:12px; font-weight:900;
+      color: rgba(255,255,255,.88);
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.24);
+      margin-bottom:10px;
+    }
+    .badge .dot{
+      width:7px; height:7px; border-radius:999px; background: var(--gold);
+      box-shadow: 0 0 0 3px rgba(245,200,75,.16);
+    }
+
+    @media (max-width: 950px){
+      .grid3{grid-template-columns: 1fr}
+      .grid2{grid-template-columns: 1fr}
+    }
+
+    /* PRICING */
+    .pricing-head{
+      display:flex; align-items:flex-end; justify-content:space-between;
+      gap:16px; flex-wrap:wrap;
+      margin-bottom: 14px;
+    }
+    .pricing-note{
+      color: var(--muted2);
+      font-size: 13px;
+      line-height: 1.45;
+      max-width: 520px;
+    }
+    .price{
+      font-size: 40px;
+      font-weight: 1000;
+      letter-spacing: -.6px;
+      margin: 10px 0 8px;
+    }
+    .price small{
+      font-size: 14px;
+      color: var(--muted2);
+      font-weight: 800;
+      margin-left: 6px;
+    }
+    .list{
+      margin: 10px 0 0;
+      padding: 0;
+      list-style: none;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      color: var(--muted);
+      font-weight:700;
+    }
+    .list li{
+      display:flex; gap:10px; align-items:flex-start;
+    }
+    .tick{
+      width:18px; height:18px; border-radius:6px;
+      background: rgba(45,91,255,.22);
+      border: 1px solid rgba(45,91,255,.35);
+      flex: 0 0 18px;
+      margin-top:2px;
+    }
+
+    /* ADDONS */
+    .addon-row{
+      display:flex; justify-content:space-between; gap:12px; align-items:flex-start;
+      border-top: 1px solid rgba(255,255,255,.10);
+      padding-top: 12px;
+      margin-top: 12px;
+    }
+    .addon-row:first-of-type{border-top:none; padding-top:0; margin-top:0}
+    .addon-name{font-weight: 950}
+    .addon-desc{color: var(--muted2); font-size: 13px; margin-top: 4px; line-height:1.45}
+    .addon-price{font-weight: 1000; color: var(--gold); white-space:nowrap}
+
+    /* “WHY IT SAVES YOU MONEY” */
+    .example{
+      background: radial-gradient(900px 420px at 50% 0%, rgba(245,200,75,.14), transparent 65%),
+                  linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.05));
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+    .example strong{color:rgba(255,255,255,.92)}
+    .example .lines{margin-top: 10px; color: var(--muted); line-height: 1.6}
+
+    /* FAQ */
+    details{
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 14px;
+      padding: 14px 14px;
+      box-shadow: 0 12px 35px rgba(0,0,0,.40);
+    }
+    details summary{
+      cursor:pointer;
+      font-weight: 950;
+      color: rgba(255,255,255,.92);
+      list-style:none;
+    }
+    details summary::-webkit-details-marker{display:none}
+    details p{
+      margin: 10px 0 0;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .faq{display:grid; gap:12px}
+
+    /* FOOTER */
+    footer{
+      padding: 28px 0 40px;
+      border-top: 1px solid rgba(255,255,255,.08);
+      color: rgba(255,255,255,.55);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+    .footer-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:16px;
+    }
+    @media (max-width: 800px){
+      .footer-grid{grid-template-columns: 1fr}
+    }
+    .muted{color:rgba(255,255,255,.55)}
   </style>
 </head>
 
 <body>
-  <!-- TOP NAV -->
-  <div class="topbar">
+  <!-- NAV -->
+  <div class="nav">
     <div class="wrap">
-      <div class="topbar-inner">
+      <div class="navbar">
         <div class="brand">
-          <span class="brand-dot" aria-hidden="true"></span>
-          <span>DEPOSIT DEFENSE</span>
+          <span class="brand-dot"></span>
+          <span>Deposit Defense</span>
         </div>
 
-        <nav class="nav" aria-label="Primary">
+        <nav class="navlinks" aria-label="Primary">
           <a href="#pricing">Pricing</a>
           <a href="#included">What’s included</a>
           <a href="#why">Why it works</a>
           <a href="#faq">FAQ</a>
         </nav>
 
-        <div class="actions">
-          <a class="pill" href="tel:+15802154212">(580) 215-4212</a>
-          <a class="btn btn-primary" href="sms:+15802154212?&body=Hi%20Deposit%20Defense%20%E2%80%94%20I%27d%20like%20a%20move-out%20quote.%20My%20home%20type%20is%20____%20and%20move-out%20date%20is%20____.">Get a quote</a>
+        <div class="navcta">
+          <a class="btn small" href="tel:+15802154212">(580) 215-4212</a>
+          <a class="btn small primary" href="sms:+15802154212?&body=Hi%20Deposit%20Defense%20—%20I%20need%20a%20move-out%20quote.%20My%20home%20type%3A%20____%20Bedrooms%3A%20____%20Move-out%20date%3A%20____%20Address%20(city)%3A%20____">Get a quote</a>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- HERO -->
-  <header class="hero">
-    <div class="wrap">
-      <div class="hero-banner" aria-label="Deposit Defense banner">
-        <div class="hero-banner-inner">
-          <!-- IMPORTANT: this path must match your repo -->
-          <img src="assets/deposit-defense-hero.png" alt="Deposit Defense shield logo on dramatic sky background" />
-        </div>
+  <!-- HERO (FULL-WIDTH BLASTED IMAGE) -->
+  <header class="hero" role="banner" aria-label="Deposit Defense">
+    <div class="wrap hero-content">
+      <div style="display:flex; justify-content:center;">
+        <div class="pill"><span class="dot"></span> Lease-style move-out clean built for inspections — Lawton & Fort Sill</div>
       </div>
 
-      <div class="tagline">
-        <div class="kicker"><span class="kdot"></span>Lease-style move-out cleaning built for inspections — Lawton & Fort Sill</div>
-        <h1>Protect Your Deposit. <span class="accent">Pass Your Inspection.</span></h1>
-        <p class="sub">
-          Deposit Defense is a <b>complete move-out clean</b> designed around common lease requirements — with
-          <b>carpet extraction</b> and a <b>documentation package</b> included on every order.
-          The goal: reduce surprise deductions and help you defend your move-out condition with clear records.
-        </p>
-        <div class="cta-row">
-          <a class="btn btn-primary" href="#pricing">See pricing</a>
-          <a class="btn" href="tel:+15802154212">Call (580) 215-4212</a>
-          <a class="btn" href="sms:+15802154212?&body=Hi%20Deposit%20Defense%20%E2%80%94%20I%27d%20like%20a%20move-out%20quote.%20My%20home%20type%20is%20____%20and%20move-out%20date%20is%20____.">Text for a quote</a>
-        </div>
-        <p class="fineprint">
-          Disclaimer: Deposit Defense provides cleaning and documentation services. We do not provide legal advice and cannot guarantee a deposit refund or inspection outcome.
-          Results vary by lease terms, property condition, and landlord/housing office decisions. Prices shown are + tax. Final pricing can vary for extreme conditions, hazardous materials, biohazards, restricted access, or jobs outside typical move-out scope.
-        </p>
+      <h1 class="h1">
+        Protect Your Deposit. <span class="accent">Pass Your Inspection.</span>
+      </h1>
+
+      <p class="sub">
+        Deposit Defense is a complete move-out clean designed around common lease requirements — with <strong>carpet extraction</strong>
+        and a <strong>documentation package</strong> included on every order. The mission: reduce surprise deductions and help you defend your move-out condition with clear records.
+      </p>
+
+      <div class="hero-actions">
+        <a class="btn primary" href="#pricing">See pricing</a>
+        <a class="btn" href="tel:+15802154212">Call (580) 215-4212</a>
+        <a class="btn" href="sms:+15802154212?&body=Hi%20Deposit%20Defense%20—%20I%20need%20a%20move-out%20quote.%20My%20home%20type%3A%20____%20Bedrooms%3A%20____%20Move-out%20date%3A%20____%20Address%20(city)%3A%20____">Text for a quote</a>
       </div>
+
+      <p class="legal-note">
+        Disclaimer: Deposit Defense provides cleaning and documentation services. We do not provide legal advice and cannot guarantee a deposit refund or inspection outcome.
+        Results vary by lease terms, property condition, and landlord/housing office decisions. Prices shown are <strong>+ tax</strong>.
+      </p>
     </div>
   </header>
 
-  <!-- PRICING (near top) -->
+  <!-- PRICING -->
   <section id="pricing">
     <div class="wrap">
-      <div class="section-title">
+      <div class="section-title"><span class="dot"></span> Simple pricing</div>
+
+      <div class="pricing-head">
         <div>
-          <h2>Simple pricing</h2>
-          <p>Documentation + carpet extraction included • Prices + tax</p>
+          <h2 class="section-h2">One mission: clean it right, document it clearly.</h2>
+          <p class="section-p">
+            Every package includes <strong>carpet extraction</strong> and the <strong>documentation package</strong> (photos + invoice).
+            Add-ons are optional and priced separately. Prices are <strong>+ tax</strong>.
+          </p>
         </div>
-        <p><a class="btn btn-primary" href="sms:+15802154212?&body=Hi%20Deposit%20Defense%20%E2%80%94%20I%27d%20like%20to%20book%20a%20move-out%20clean.%20Apartment%2FHome%20size%3A%20____%20Bedrooms%3A%20____%20Move-out%20date%3A%20____.">Text to book</a></p>
-      </div>
-
-      <div class="grid-3">
-        <div class="card">
-          <h3>Apartments</h3>
-          <p>Complete move-out clean + carpet extraction + documentation package.</p>
-          <div class="price">
-            <strong>$399</strong>
-            <span class="mono" style="color:var(--muted)">+ tax</span>
-          </div>
-          <div class="badge"><b>Included:</b> photos + invoice + checklist record</div>
-          <ul class="ul">
-            <li>Inspection-focused kitchens & bathrooms</li>
-            <li>Floors cleaned + carpet extraction</li>
-            <li>Baseboards, edges, detail points</li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <h3>Small Homes (2–3 bedrooms)</h3>
-          <p>Most common move-out package. Built for lease checklists.</p>
-          <div class="price">
-            <strong>$499</strong>
-            <span class="mono" style="color:var(--muted)">+ tax</span>
-          </div>
-          <div class="badge"><b>Included:</b> carpet + documentation (every order)</div>
-          <ul class="ul">
-            <li>Whole-home move-out clean</li>
-            <li>Carpet extraction (standard)</li>
-            <li>Documentation for your records</li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <h3>Large Homes</h3>
-          <p>Bigger layouts / more detail time. Best for higher deposit risk.</p>
-          <div class="price">
-            <strong>$599</strong>
-            <span class="mono" style="color:var(--muted)">+ tax</span>
-          </div>
-          <div class="badge"><b>Included:</b> inspection-ready workflow</div>
-          <ul class="ul">
-            <li>More rooms, more surfaces, more edges</li>
-            <li>Carpet extraction (standard)</li>
-            <li>Photo + invoice documentation package</li>
-          </ul>
+        <div class="pricing-note">
+          Have a landlord / housing checklist? Send it. We’ll use it as a reference.
+          If the home is extremely heavy (biohazards, hoarding, hazardous materials), we may decline or refer out.
         </div>
       </div>
 
-      <div style="height:14px"></div>
-
-      <div class="grid-2">
+      <div class="grid3">
         <div class="card">
-          <h3>Only add-ons we offer (optional)</h3>
-          <p>We keep it simple. Documentation is already included in every order.</p>
-
-          <div style="height:10px"></div>
-
-          <div class="addon">
-            <div>
-              <div class="name">Trash removal</div>
-              <div class="small">Bagged / small items only. No hazardous waste.</div>
-            </div>
-            <div class="range">$50–$150</div>
-          </div>
-
-          <div style="height:10px"></div>
-          <div class="addon">
-            <div>
-              <div class="name">Wall hole touch-up</div>
-              <div class="small">Small nail/screw holes: patch + quick touch-up. Not full repaint.</div>
-            </div>
-            <div class="range">$75–$250</div>
-          </div>
-
-          <div style="height:10px"></div>
-          <div class="addon">
-            <div>
-              <div class="name">Odor treatment</div>
-              <div class="small">Deodorizing treatment for typical move-out odors. Severe issues may require specialty remediation.</div>
-            </div>
-            <div class="range">$75–$200</div>
-          </div>
-
-          <div class="small" style="margin-top:12px">
-            Carpet note: Standard extraction is included. Landlords may still charge for severe staining, damage, or replacement decisions outside our control.
+          <div class="badge"><span class="dot"></span> Apartments</div>
+          <div class="price">$399 <small>+ tax</small></div>
+          <ul class="list">
+            <li><span class="tick"></span> Lease-style move-out clean</li>
+            <li><span class="tick"></span> Carpet extraction included</li>
+            <li><span class="tick"></span> Documentation package included</li>
+            <li><span class="tick"></span> Walkthrough-ready finish</li>
+          </ul>
+          <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap">
+            <a class="btn primary" href="sms:+15802154212?&body=Hi%20Deposit%20Defense%20—%20I%20want%20the%20%24399%20Apartment%20move-out.%20Move-out%20date%3A%20____%20Beds%2FBaths%3A%20____%20Address%20(city)%3A%20____">Text to book</a>
+            <a class="btn" href="tel:+15802154212">Call</a>
           </div>
         </div>
 
-        <div class="card" id="why">
-          <h3>Why Deposit Defense exists</h3>
-          <p>
-            Most cleaners clean. <b>We clean and document.</b> Move-out deductions often come from “gotcha” items:
-            baseboards, appliances, bathrooms, carpet condition, and small wall marks. We focus on the inspection areas
-            and give you records you can keep.
+        <div class="card">
+          <div class="badge"><span class="dot"></span> Small Homes</div>
+          <div class="price">$499 <small>+ tax</small></div>
+          <p class="muted" style="margin:0 0 10px; font-weight:800;">2–3 bedrooms</p>
+          <ul class="list">
+            <li><span class="tick"></span> Lease-style move-out clean</li>
+            <li><span class="tick"></span> Carpet extraction included</li>
+            <li><span class="tick"></span> Documentation package included</li>
+            <li><span class="tick"></span> Inspection-focused detail points</li>
+          </ul>
+          <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap">
+            <a class="btn primary" href="sms:+15802154212?&body=Hi%20Deposit%20Defense%20—%20I%20want%20the%20%24499%20Small%20Home%20(2-3%20bed)%20move-out.%20Move-out%20date%3A%20____%20Beds%2FBaths%3A%20____%20Address%20(city)%3A%20____">Text to book</a>
+            <a class="btn" href="tel:+15802154212">Call</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="badge"><span class="dot"></span> Large Homes</div>
+          <div class="price">$599 <small>+ tax</small></div>
+          <p class="muted" style="margin:0 0 10px; font-weight:800;">Bigger layouts / more detail time</p>
+          <ul class="list">
+            <li><span class="tick"></span> Lease-style move-out clean</li>
+            <li><span class="tick"></span> Carpet extraction included</li>
+            <li><span class="tick"></span> Documentation package included</li>
+            <li><span class="tick"></span> Extra time for edges & detail</li>
+          </ul>
+          <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap">
+            <a class="btn primary" href="sms:+15802154212?&body=Hi%20Deposit%20Defense%20—%20I%20want%20the%20%24599%20Large%20Home%20move-out.%20Move-out%20date%3A%20____%20Beds%2FBaths%3A%20____%20Address%20(city)%3A%20____">Text to book</a>
+            <a class="btn" href="tel:+15802154212">Call</a>
+          </div>
+        </div>
+      </div>
+
+      <div style="height:16px"></div>
+
+      <div class="grid2">
+        <div class="card">
+          <div class="section-title" style="margin:0 0 10px"><span class="dot"></span> Only add-ons we offer</div>
+          <p class="section-p" style="margin-bottom:12px">
+            We keep it simple. Documentation is <strong>already included</strong> in every order. Add-ons are optional and priced separately.
           </p>
 
-          <div style="height:12px"></div>
-
-          <div class="example">
-            <div class="card" style="margin:0; padding:14px">
-              <h3 style="margin:0 0 8px">Example: how a deposit disappears</h3>
-              <div class="big">
-                A renter has a $1,200 security deposit. The landlord charges for carpet cleaning, “deep clean,” trash-out,
-                and patch/paint—even when the place looks “fine.” With limited proof, it’s hard to dispute.
-                Deposit Defense is designed to reduce that risk by delivering an inspection-focused clean and clear records.
-              </div>
-              <div class="small" style="margin-top:10px">
-                Not a guarantee—just a common outcome we’re built to help prevent. Landlord policies vary.
-              </div>
+          <div class="addon-row">
+            <div>
+              <div class="addon-name">Trash removal</div>
+              <div class="addon-desc">Bagged trash / small items only. No hazardous waste.</div>
             </div>
-
-            <div class="math">
-              <div class="row"><span>“Deep clean” fee</span> <b>$350</b></div>
-              <div class="row"><span>Carpet cleaning</span> <b>$200</b></div>
-              <div class="row"><span>Trash removal</span> <b>$150</b></div>
-              <div class="row"><span>Patch/paint</span> <b>$300</b></div>
-              <div class="row total"><span>Total deductions</span> <b>$1,000</b></div>
-              <div class="note">Illustrative example only. Charges vary by lease and landlord.</div>
-            </div>
+            <div class="addon-price">$50–$150</div>
           </div>
 
-          <div style="height:12px"></div>
+          <div class="addon-row">
+            <div>
+              <div class="addon-name">Wall hole touch-up</div>
+              <div class="addon-desc">Small nail/screw holes: patch + quick touch-up. Not full repaint.</div>
+            </div>
+            <div class="addon-price">$75–$250</div>
+          </div>
 
-          <a class="btn btn-primary" href="sms:+15802154212?&body=Hi%20Deposit%20Defense%20%E2%80%94%20I%27d%20like%20a%20quote.%20Apartment%2FHome%20size%3A%20____%20Bedrooms%3A%20____%20Move-out%20date%3A%20____.%20Any%20add-ons%3F%20Trash%2Fholes%2Fodor%3A%20____.">Get a fast quote by text</a>
+          <div class="addon-row">
+            <div>
+              <div class="addon-name">Odor treatment</div>
+              <div class="addon-desc">Deodorizing treatment for typical move-out odors.</div>
+            </div>
+            <div class="addon-price">$75–$200</div>
+          </div>
+
+          <p class="legal-note" style="text-align:left; margin-top:12px">
+            Add-on prices vary by scope. Final confirmation happens before work starts.
+          </p>
+        </div>
+
+        <div class="example">
+          <div class="section-title" style="margin:0 0 8px"><span class="dot"></span> Example: how deposits disappear</div>
+          <div class="lines">
+            A $1,200 deposit can vanish fast:
+            <br><strong>•</strong> “Cleaning fee” $250–$450
+            <br><strong>•</strong> Carpet “stains / deodorizing” $150–$300
+            <br><strong>•</strong> “Patch & paint” $200–$600
+            <br><strong>•</strong> Trash-out $75–$250
+            <br><br>
+            Deposit Defense is designed to help you <strong>avoid avoidable charges</strong> by delivering a lease-style clean and a documentation package you can keep for your records.
+          </div>
+          <p class="legal-note" style="text-align:left; margin-top:12px">
+            Note: Landlord decisions vary. Documentation supports your records but does not guarantee outcomes.
+          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- WHAT'S INCLUDED (single section, no duplicate “process”) -->
+  <!-- WHAT'S INCLUDED (MERGED + NO DUPLICATE PROCESS) -->
   <section id="included">
     <div class="wrap">
-      <div class="section-title">
-        <div>
-          <h2>What’s included (every order)</h2>
-          <p>Lease-style move-out cleaning + carpet extraction + documentation package</p>
-        </div>
-        <p style="color:var(--muted)">Bring your landlord/housing checklist — we’ll use it as a reference.</p>
-      </div>
+      <div class="section-title"><span class="dot"></span> What’s included (every order)</div>
+      <h2 class="section-h2">Lease-style move-out cleaning + carpet extraction + documentation</h2>
+      <p class="section-p">
+        We focus on the items that trigger deductions: kitchens, bathrooms, floors/edges, baseboards, fixtures, and detail points.
+        If you have a move-out checklist, we’ll align to it.
+      </p>
 
-      <div class="grid-3">
+      <div class="grid3">
         <div class="card">
           <h3>1) Inspection-focused clean</h3>
-          <p>We prioritize the areas most likely to trigger deductions: kitchens, bathrooms, edges, baseboards, fixtures, and detail points.</p>
-          <div class="badge"><b>Goal:</b> reduce “gotcha” notes</div>
+          <p>We prioritize the areas most likely to get marked on walkthrough: kitchens, bathrooms, edges/baseboards, fixtures, visible dust, and detail points.</p>
         </div>
-
         <div class="card">
           <h3>2) Carpet extraction (included)</h3>
-          <p>Standard extraction and reset for move-out. Note: stains/damage/replacement decisions are landlord-controlled.</p>
-          <div class="badge"><b>Included</b> in every package</div>
+          <p>Standard extraction and reset for move-out. Severe staining/damage may still be charged by landlords (landlord-controlled).</p>
         </div>
-
         <div class="card">
           <h3>3) Documentation package (included)</h3>
-          <p>Photo set of key rooms + common problem areas, plus an invoice for your records.</p>
-          <div class="badge"><b>Included</b> in every package</div>
+          <p>A photo set of key rooms + common problem areas, plus your invoice for records.</p>
         </div>
       </div>
 
       <div style="height:14px"></div>
 
       <div class="card">
-        <h3>Typical checklist areas we cover</h3>
-        <ul class="ul">
-          <li><b>Kitchen:</b> counters, sink, exterior appliances, stovetop, cabinet fronts, backsplash, detail wipe-down</li>
-          <li><b>Bathrooms:</b> shower/tub, toilet, vanity, mirrors, fixtures, soap scum detail</li>
-          <li><b>Floors:</b> vacuum/mop, edges, detail corners; <b>carpet extraction included</b></li>
-          <li><b>Detail points:</b> baseboards, switches, doors/handles, visible dust, light spot-checking</li>
+        <h3 style="margin-bottom:10px">Typical checklist areas we cover</h3>
+        <ul class="list" style="margin-top:0">
+          <li><span class="tick"></span> <strong>Kitchen:</strong> counters, sink, stovetop, exterior appliances, cabinet fronts, backsplash, detail wipe-down</li>
+          <li><span class="tick"></span> <strong>Bathrooms:</strong> shower/tub, toilet, vanity, mirrors, fixtures, soap scum detail</li>
+          <li><span class="tick"></span> <strong>Floors:</strong> vacuum/mop + detail edges; <strong>carpet extraction included</strong></li>
+          <li><span class="tick"></span> <strong>Detail points:</strong> baseboards, switches, doors/handles, visible dust, quick spot-checking</li>
         </ul>
-
-        <p class="small" style="margin-top:10px">
-          Service notes: We are a cleaning and documentation service. We do not remove hazardous materials, biohazards, or perform mold remediation.
-          We only offer the add-ons listed above (trash removal, wall hole touch-up, odor treatment). Anything beyond that may require a specialty provider.
+        <p class="legal-note" style="text-align:left; margin-top:12px">
+          Service note: We are a cleaning and documentation service. We do not perform repairs beyond listed add-ons. We do not remove hazardous materials, and we may decline jobs requiring specialized remediation.
         </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY IT WORKS -->
+  <section id="why">
+    <div class="wrap">
+      <div class="section-title"><span class="dot"></span> Why it works</div>
+      <h2 class="section-h2">Most cleaners clean. We clean + document.</h2>
+      <p class="section-p">
+        When move-outs go bad, it’s usually not because the home is “dirty” — it’s because of missed lease items, edges/detail points,
+        and no proof. We’re built for inspection day.
+      </p>
+
+      <div class="grid2">
+        <div class="card">
+          <h3>Designed around lease requirements</h3>
+          <p>We focus on what actually gets marked during final walkthroughs — not just a “maintenance clean.”</p>
+        </div>
+        <div class="card">
+          <h3>Documentation included on every job</h3>
+          <p>Time-stamped photos + invoice for your records. Helps reduce confusion and supports your move-out condition story.</p>
+        </div>
+        <div class="card">
+          <h3>Simple booking + clear scope</h3>
+          <p>Call/text, confirm the package, confirm any add-ons. No surprises mid-job.</p>
+        </div>
+        <div class="card">
+          <h3>Built for PCS timelines</h3>
+          <p>Fast communication, straight pricing, and an inspection-ready finish — designed for busy schedules.</p>
+        </div>
+      </div>
+
+      <div style="height:14px"></div>
+
+      <div class="card" style="display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;">
+        <div>
+          <h3 style="margin:0 0 6px">Fast quote</h3>
+          <p style="margin:0; color:var(--muted)">Text us: home type, bedrooms, pets, move-out date, and the city/address area.</p>
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="btn" href="tel:+15802154212">Call (580) 215-4212</a>
+          <a class="btn primary" href="sms:+15802154212?&body=Hi%20Deposit%20Defense%20—%20Quote%20request.%20Home%20type%3A%20____%20Bedrooms%3A%20____%20Pets%3A%20____%20Move-out%20date%3A%20____%20Address%20(city)%3A%20____%20Add-ons%20(trash%2Ftouch-up%2Fodor)%3A%20____">Text for a quote</a>
+        </div>
       </div>
     </div>
   </section>
@@ -576,111 +633,88 @@
   <!-- FAQ -->
   <section id="faq">
     <div class="wrap">
-      <div class="section-title">
-        <div>
-          <h2>FAQ</h2>
-          <p>Clear expectations = fewer surprises</p>
-        </div>
+      <div class="section-title"><span class="dot"></span> FAQ</div>
+      <h2 class="section-h2">Quick answers before you book</h2>
+      <p class="section-p">
+        We keep it straightforward. If your landlord/housing office has a checklist, send it — we’ll align to it.
+      </p>
+
+      <div class="faq">
+        <details>
+          <summary>Is carpet cleaning included?</summary>
+          <p>Yes. Standard carpet extraction is included in every package. Severe staining, pet damage, or replacement decisions are landlord-controlled and may still be charged by the property.</p>
+        </details>
+
+        <details>
+          <summary>What is the “documentation package”?</summary>
+          <p>A photo set of key rooms + common problem areas and your invoice for records. It’s designed to support your move-out condition story and reduce confusion later.</p>
+        </details>
+
+        <details>
+          <summary>Do you guarantee I’ll get my deposit back?</summary>
+          <p>No. We cannot guarantee deposit refunds or inspection outcomes because landlords and lease terms vary. We provide inspection-focused cleaning + documentation to help reduce avoidable deductions.</p>
+        </details>
+
+        <details>
+          <summary>What add-ons do you offer?</summary>
+          <p>Only three: trash removal, wall hole touch-up (small nail/screw holes), and odor treatment. Everything else is outside scope unless explicitly agreed in writing.</p>
+        </details>
+
+        <details>
+          <summary>Do you do repairs, painting, or major patchwork?</summary>
+          <p>We are primarily a cleaning service. We only do small wall hole touch-up as an add-on. Full repainting, major repairs, or specialty remediation are not included.</p>
+        </details>
+
+        <details>
+          <summary>How do I get a quote fast?</summary>
+          <p>Text (580) 215-4212 with: home type, bedrooms, pets, move-out date, and city/address area. Mention any add-ons (trash/touch-up/odor) if needed.</p>
+        </details>
+
+        <details>
+          <summary>Are prices final?</summary>
+          <p>Prices listed are base package pricing + tax. Final pricing can vary for extreme conditions (heavy pet hair, excessive trash, restricted access, biohazards/unsafe conditions). We confirm scope before starting.</p>
+        </details>
+
+        <details>
+          <summary>What areas do you serve?</summary>
+          <p>Lawton & Fort Sill area and nearby communities. If you’re outside the typical area, text us and we’ll confirm availability.</p>
+        </details>
       </div>
-
-      <details>
-        <summary>Do you guarantee I’ll get my deposit back?</summary>
-        <p>
-          No. We can’t control lease terms, property condition, or landlord decisions. What we do is deliver a lease-style, inspection-focused clean
-          and provide documentation you can keep. Many customers want this because it reduces ambiguity and helps avoid “he said / she said.”
-        </p>
-      </details>
-
-      <details>
-        <summary>Is carpet cleaning included?</summary>
-        <p>
-          Yes — <b>standard carpet extraction is included in every package</b>. Landlords may still charge for severe staining, odor, damage,
-          or replacement decisions outside our control.
-        </p>
-      </details>
-
-      <details>
-        <summary>What exactly is the documentation package?</summary>
-        <p>
-          A photo set of key rooms + common deduction areas (examples: kitchen, bathrooms, floors/baseboards, and visible condition items),
-          plus a paid invoice for your records. We provide documentation for your file — it is not legal advice.
-        </p>
-      </details>
-
-      <details>
-        <summary>What add-ons do you offer?</summary>
-        <p>
-          Only three: <b>trash removal</b>, <b>wall hole touch-up</b>, and <b>odor treatment</b>. Everything else is outside scope unless it’s part of
-          the standard move-out cleaning and carpet extraction.
-        </p>
-      </details>
-
-      <details>
-        <summary>What if my landlord has a checklist?</summary>
-        <p>
-          Perfect — send it to us. We’ll use it as a reference to align the cleaning focus with what your property actually checks during move-out.
-        </p>
-      </details>
-
-      <details>
-        <summary>How fast can I book?</summary>
-        <p>
-          Texting is fastest. Send your home type (apartment/small home/large home), bedrooms, move-out date, and any add-ons.
-          We’ll confirm scope and scheduling by text or phone.
-        </p>
-      </details>
-
-      <details>
-        <summary>Are prices final?</summary>
-        <p>
-          Prices shown are <b>+ tax</b>. Final pricing can vary for extreme conditions (heavy pet hair, excessive trash, biohazards, hazardous materials),
-          restricted access, or non-standard scope. If something is out of scope, we’ll tell you before starting.
-        </p>
-      </details>
-
-      <details>
-        <summary>Do you work on Fort Sill?</summary>
-        <p>
-          We serve Lawton & Fort Sill area. Access rules can vary by location. If you’re on-post, text us the address/area and we’ll confirm access requirements.
-        </p>
-      </details>
 
       <div style="height:14px"></div>
 
       <div class="card">
-        <h3>Fast quote (text)</h3>
-        <p>Send: home type, bedrooms, move-out date, pets, and any add-ons (trash / holes / odor).</p>
-        <div class="cta-row" style="justify-content:flex-start; margin-top:10px">
-          <a class="btn btn-primary" href="sms:+15802154212?&body=Hi%20Deposit%20Defense%20%E2%80%94%20Quote%20request.%20Home%20type%3A%20____%20Bedrooms%3A%20____%20Move-out%20date%3A%20____%20Pets%3A%20____%20Add-ons%3A%20trash%2Fholes%2Fodor%20____.">Text (580) 215-4212</a>
-          <a class="btn" href="tel:+15802154212">Call now</a>
-        </div>
+        <h3 style="margin:0 0 8px">Legal / service disclaimer (plain English)</h3>
+        <p style="margin:0; color:var(--muted); line-height:1.6">
+          Deposit Defense provides cleaning and documentation services only. We do not provide legal advice. We cannot guarantee a deposit refund or inspection result.
+          Outcomes depend on your lease, property condition, and landlord/housing office decisions. Documentation is for your records and may support your move-out condition.
+          Prices shown are + tax; add-ons and final scope confirmed before work begins.
+        </p>
       </div>
     </div>
   </section>
 
   <footer>
-    <div class="wrap">
-      <div class="footer-card">
-        <div class="footer-row">
-          <div>
-            <div style="font-weight:900; color:var(--text); letter-spacing:.3px;">Deposit Defense</div>
-            <div class="small">Move-out cleaning built for lease requirements • Serving Lawton & Fort Sill</div>
-          </div>
-          <div class="mono">
-            <div><a href="tel:+15802154212">(580) 215-4212</a></div>
-            <div class="small">Texting is fastest for quotes.</div>
-          </div>
-        </div>
-
-        <div style="height:10px"></div>
-
-        <div class="small">
-          Legal: Deposit Defense provides cleaning and documentation services only. We do not provide legal advice and do not guarantee deposit refunds or inspection outcomes.
-          Documentation is provided for customer records. Landlord/housing office policies vary. Prices shown are + tax and may vary with condition and scope.
+    <div class="wrap footer-grid">
+      <div>
+        <div style="font-weight:900; color:rgba(255,255,255,.85); margin-bottom:6px;">Deposit Defense</div>
+        <div class="muted">Move-out cleaning built for inspections. Carpet extraction + documentation included.</div>
+      </div>
+      <div>
+        <div style="font-weight:900; color:rgba(255,255,255,.85); margin-bottom:6px;">Contact</div>
+        <div class="muted">
+          Call/Text: <a href="tel:+15802154212" style="font-weight:900;">(580) 215-4212</a>
+          <br>
+          Service area: Lawton & Fort Sill
         </div>
       </div>
     </div>
   </footer>
 
+  <!-- NOTE:
+    If you ever feel the hero image is cropping:
+    Change background-size: cover; to background-size: contain; in .hero::before
+    (Contain shows the full logo but may add letterboxing. Cover fills the width.)
+  -->
 </body>
 </html>
