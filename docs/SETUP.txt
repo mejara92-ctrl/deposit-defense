@@ -8,14 +8,14 @@ WHAT'S IN THIS SITE
   /404.html
   js/dd-config.js           THE ONE FILE for prices, phone, and the booking API address
 
-The site works the moment you upload it. Until step 2 below is done, /book shows
-the customer their price and a "Text Us to Book" button with the quote filled in.
+TEXT/CALL MODE (how it ships): just upload the site. /book shows the price,
+then a "Text Us to Book" button with the quote filled in. No Worker needed.
 
 1. DEPLOY THE SITE (Cloudflare Pages)
    Upload this folder as a new Pages project (or replace the old Deposit Defense
    project). No build step. Add your domain under Custom domains.
 
-2. TURN ON ONLINE BOOKING (the Worker)
+2. OPTIONAL, LATER: ONLINE BOOKING (the Worker). Skip this for text/call only.
    a. Cloudflare > Workers > Create Worker. Name it e.g. deposit-defense-booking.
       Paste deposit-defense-booking-worker.js and Deploy.
       This is a SEPARATE Worker. Red Prairie's Worker is not touched.

@@ -7,7 +7,7 @@
   var TZ = "America/Chicago";
   var STORE = "dd-book-v1";
   var ORDER = ["intro", "beds", "carpet", "facts", "contact", "price", "address", "time", "review"];
-  var PREV = { beds: "intro", custom: "beds", carpet: "beds", facts: "carpet", contact: "facts", price: "contact", address: "price", time: "address", review: "time" };
+  var PREV = { beds: "intro", custom: "beds", carpet: "beds", facts: "carpet", contact: "facts", price: API ? "contact" : "facts", address: "price", time: "address", review: "time" };
   var BAR = { beds: 1, carpet: 2, facts: 3, contact: 4, price: 5, address: 6, time: 7, review: 8, custom: 1 };
 
   var $ = function (s, r) { return (r || document).querySelector(s); };
@@ -19,7 +19,7 @@
   var S = {
     step: "intro", beds: null, carpet: 0, enzyme: 0, utilities: "", empty: "", extras: [],
     first: "", last: "", phone: "", email: "", leadSent: "",
-    addr: "", city: "", zip: "", notes: "", date: "", slot: ""
+    addr: "", city: "", zip: "", notes: "", date: "", slot: "", moveDate: ""
   };
   try {
     var saved = JSON.parse(sessionStorage.getItem(STORE) || "null");
@@ -48,7 +48,13 @@
     t.push("Total: " + money(total()) + " " + (DD.taxNote || ""));
     var ex = extrasLabels();
     if (ex.length) t.push("Extras to price on arrival: " + ex.join(", "));
+    if (S.moveDate) t.push("Move-out/inspection date: " + moveDateText());
     return t.join("\n");
+  }
+
+  function moveDateText() {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(S.moveDate)) return "";
+    return new Intl.DateTimeFormat("en-US", { timeZone: "UTC", weekday: "short", month: "short", day: "numeric" }).format(new Date(S.moveDate + "T12:00:00Z"));
   }
 
   /* ---------- reachability ---------- */
@@ -62,7 +68,7 @@
       case "custom": return S.beds === "6+";
       case "carpet": case "facts": return validBeds();
       case "contact": return factsDone();
-      case "price": return contactDone();
+      case "price": return API ? contactDone() : factsDone();
       case "address": return contactDone() && !!API;
       case "time": return addressDone();
       case "review": return addressDone() && !!S.slot;
@@ -90,7 +96,7 @@
     if (h && push) { h.setAttribute("tabindex", "-1"); h.focus({ preventScroll: true }); }
   }
   function next(from) {
-    var map = { intro: "beds", carpet: "facts", facts: "contact", price: "address", time: "review" };
+    var map = { intro: "beds", carpet: "facts", facts: API ? "contact" : "price", price: "address", time: "review" };
     if (map[from]) show(map[from], true);
   }
   window.addEventListener("popstate", function (e) {
@@ -123,6 +129,7 @@
     }
     if (step === "time") loadSlots();
     if (step === "review") renderReview();
+    if (step === "custom") setSmsLinks();
     renderBeds();
   }
 
@@ -188,6 +195,9 @@
       var key = g.getAttribute("data-group");
       $$(".choice", g).forEach(function (b) { b.setAttribute("aria-pressed", String(S[key] === b.getAttribute("data-val"))); });
     });
+    var md = $("#moveDate");
+    md.min = new Date(chicagoToday()).toISOString().slice(0, 10);
+    md.value = S.moveDate || "";
     $("#utilNote").hidden = !S.utilities || S.utilities === "Yes";
     $("#emptyNote").hidden = !S.empty || S.empty === "Empty";
     $("#factsNext").disabled = !factsDone();
@@ -198,6 +208,8 @@
       save(); renderFacts();
     });
   });
+
+  $("#moveDate").addEventListener("change", function (e) { S.moveDate = e.target.value; save(); });
 
   /* ---------- contact gate ---------- */
   function fmtPhone(v) {
@@ -255,7 +267,11 @@
     $("#extrasPromise").hidden = !S.extras.length;
     $("#bookActions").hidden = !API;
     $("#textActions").hidden = !!API;
-    $("#textAlt").parentNode.hidden = !API;
+    $("#textAlt").hidden = !API;
+    $("#callAlt").hidden = !!API || DESKTOP;
+    $("#deskBook").hidden = !!API || !DESKTOP;
+    $("#copyQuote").textContent = "Copy My Quote";
+    setSmsLinks();
   }
 
   /* ---------- SMS / phone links ---------- */
@@ -265,10 +281,31 @@
       : "Hi! I'd like to book a move-out clean.\n" + quoteText() + (S.first ? "\nName: " + S.first + " " + S.last : "");
     return "sms:+1" + (DD.phoneDigits || "") + "?&body=" + encodeURIComponent(body);
   }
+  function setSmsLinks() {
+    $$("[data-sms]").forEach(function (a) { a.setAttribute("href", smsHref(a.getAttribute("data-sms"))); });
+  }
   document.addEventListener("click", function (e) {
     var a = e.target.closest && e.target.closest("[data-sms]");
     if (a) a.setAttribute("href", smsHref(a.getAttribute("data-sms")));
   }, true);
+
+  /* Computers can't send texts, so give desktop visitors the number and a copy button. */
+  var DESKTOP = !!(window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches);
+  $("#copyQuote").addEventListener("click", function () {
+    var btn = this, text = "Hi! I'd like to book a move-out clean.\n" + quoteText();
+    var done = function () { btn.textContent = "Copied. Text it to " + DD.phoneDisplay; };
+    try {
+      if (navigator.clipboard && window.isSecureContext) { navigator.clipboard.writeText(text).then(done, fallback); return; }
+    } catch (e) {}
+    fallback();
+    function fallback() {
+      var ta = document.createElement("textarea");
+      ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy"); done(); } catch (e) { btn.textContent = "Text " + DD.phoneDisplay; }
+      document.body.removeChild(ta);
+    }
+  });
 
   /* ---------- address ---------- */
   $("#zip").addEventListener("input", function (e) { e.target.value = digits(e.target.value).slice(0, 5); });
@@ -408,6 +445,7 @@
       "Water and power on: " + S.utilities,
       "Home empty: " + S.empty,
       "Extras to price on arrival: " + (extrasLabels().join(", ") || "None"),
+      "Move-out/inspection date: " + (moveDateText() || "Not given"),
       "Estimate: " + money(total()) + " " + (DD.taxNote || ""),
       "Price check: crew walks through on arrival and confirms the price before starting."
     ];
@@ -487,7 +525,13 @@
     el.textContent = money(Math.min.apply(null, p));
   });
 
+  /* Text/call mode (no booking API): there's nothing to save contact details to,
+     so skip that screen and go straight from quick facts to the price. */
+  if (!API) $$(".step-label").forEach(function (el) { el.textContent = el.textContent.replace(" of 4", " of 3"); });
+
   /* ---------- start ---------- */
   if (S.beds !== null && S.beds !== "6+") S.beds = Number(S.beds) || null;
+  // Homepage buttons link to /book/?start=1, so skip the intro screen for them.
+  if (/[?&]start=1/.test(location.search) && (S.step === "intro" || !canShow(S.step))) S.step = "beds";
   show(S.step, false);
 })();

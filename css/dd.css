@@ -1,4 +1,6 @@
-/* Deposit Defense Cleaning — one stylesheet for every page. */
+/* Deposit Defense Cleaning — one stylesheet for every page. Phone layout first. */
+@font-face { font-family: "Inter"; src: url("/assets/fonts/inter-var.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: "Barlow Condensed"; src: url("/assets/fonts/barlow-condensed-700.woff2") format("woff2"); font-weight: 700; font-display: swap; }
 :root {
   --navy: #0b1730;
   --navy-2: #102142;
@@ -238,3 +240,88 @@ footer .legal { border-top: 1px solid rgba(255,255,255,.1); margin-top: 26px; pa
 .spinner { width: 18px; height: 18px; border-radius: 50%; border: 2.5px solid rgba(255,255,255,.4); border-top-color: #fff; animation: spin .8s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation-duration: 0s !important; } }
+
+.alt-line { text-align: center; margin: 16px 0 0; font-size: 15px; color: var(--ink-soft); }
+.quote-word { font-size: 24px !important; line-height: 1.33 !important; }
+html { scroll-padding-top: 76px; }
+button, a { -webkit-tap-highlight-color: transparent; }
+.choice, .date-btn, .time-btn, .stepper button { touch-action: manipulation; }
+
+/* ================= Phones (the main audience) ================= */
+@media (max-width: 759px) {
+  /* Header: the sticky bottom bar carries the CTA, so the header stays clean. */
+  .site-header .header-cta { display: none; }
+  .site-header .wrap { min-height: 58px; }
+
+  /* Homepage rhythm */
+  section { padding: 44px 0; }
+  .wrap { padding: 0 18px; }
+  .section-head { margin-bottom: 22px; }
+  .section-head p { font-size: 16px; }
+  h2 { font-size: 31px; }
+  .hero .wrap { padding-top: 30px; padding-bottom: 34px; }
+  .hero h1 { font-size: 40px; line-height: 1; }
+  .hero .lede { font-size: 16.5px; margin: 14px 0 18px; }
+  .eyebrow { font-size: 12px; margin-bottom: 10px; }
+  .ticks { gap: 6px; margin-bottom: 20px; font-size: 15px; }
+  .hero-actions { display: grid; grid-template-columns: 1fr; gap: 10px; }
+  .hero-actions .btn-ghost { display: none; }
+  .hero-note { font-size: 12.5px; margin-top: 12px; }
+
+  /* Prices: 3 across, compact */
+  .prices { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .price-tile { padding: 12px 4px; border-radius: 12px; }
+  .price-tile span { font-size: 12.5px; }
+  .price-tile strong { font-size: 28px; margin-top: 2px; }
+  .quote-word { font-size: 21px !important; line-height: 1.33 !important; }
+
+  .grid { gap: 12px; }
+  .card { padding: 18px; border-radius: 16px; box-shadow: 0 6px 18px rgba(11, 23, 48, .08); }
+  .card h3 { font-size: 21px; margin-bottom: 4px; }
+  .card p, .card ul { font-size: 15px; }
+  .badge { margin-bottom: 8px; }
+  .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .grid-4 .card { padding: 14px; }
+  .grid-4 .card h3 { font-size: 19px; }
+  .grid-4 .card p { font-size: 13.5px; line-height: 1.45; }
+
+  /* How it works: compact rows */
+  .steps { gap: 10px; }
+  .step { display: grid; grid-template-columns: 34px 1fr; column-gap: 14px; padding: 16px; border-radius: 14px; }
+  .step::before { grid-row: span 2; margin: 0; }
+  .step h3 { font-size: 19px; }
+  .step p { font-size: 14.5px; }
+
+  .faq summary { padding: 14px 0; font-size: 15.5px; }
+  .cta-band .actions { display: grid; grid-template-columns: 1fr 1fr; }
+  footer.site-footer { padding-top: 34px; }
+
+  /* ---------- Funnel: full-width sheet, actions in the thumb zone ---------- */
+  .funnel-top { padding: 10px 16px; }
+  .progress { margin: 0 16px 10px; }
+  .panel { margin: 0; border-radius: 22px 22px 0 0; padding: 22px 18px 0; min-height: calc(100vh - 76px); min-height: calc(100svh - 76px); box-shadow: none; display: flex; flex-direction: column; }
+  .panel h1 { font-size: 36px; }
+  .panel h2 { font-size: 31px; }
+  .panel .sub { font-size: 15.5px; margin: 8px 0 18px; }
+  .q { margin-bottom: 18px; }
+  .choice { min-height: 58px; }
+  .panel > .actions-row:last-child, .panel form > .actions-row:last-child {
+    position: sticky; bottom: 0; z-index: 5; margin: auto -18px 0; padding: 12px 18px calc(12px + env(safe-area-inset-bottom));
+    background: rgba(255,255,255,.96); backdrop-filter: blur(8px); border-top: 1px solid var(--line);
+  }
+  .panel form { display: flex; flex-direction: column; flex: 1; }
+  .panel > .actions-row:last-child { margin-top: auto; }
+  .panel form > .actions-row:last-child { margin-top: auto; }
+  .panel .live-total, .panel .trust-row, .panel .fine, .panel .alt-line, .panel .note:not([hidden]) { flex: none; }
+  .panel > *:nth-last-child(2) { margin-bottom: 22px; }
+  .funnel-body { background: #fff; }
+  .funnel-body > .funnel-top, .funnel-body > .progress { background: var(--deep); }
+  .funnel-body { background: linear-gradient(var(--deep) 0 140px, #fff 140px); }
+  .funnel-foot { background: #fff; color: var(--ink-soft); padding: 18px 18px 28px; }
+  .funnel-foot a { color: var(--blue); }
+  .back { padding: 0 10px 0 0; }
+}
+@media (max-width: 759px) { p.badge, .card p.badge { font-size: 10.5px; } }
+.desk-book { margin-top: 16px; border: 1.5px dashed var(--line); border-radius: 14px; padding: 14px; text-align: center; }
+.desk-book p { font-size: 14.5px; color: var(--ink-soft); }
+.field.q input[type="date"] { min-height: 50px; }

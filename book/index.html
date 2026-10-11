@@ -8,9 +8,8 @@
 <link rel="canonical" href="/book/">
 <meta name="theme-color" content="#070f20">
 <link rel="icon" href="/assets/favicon.png" type="image/png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" href="/assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/barlow-condensed-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/css/dd.css">
 </head>
 <body class="funnel-body">
@@ -30,7 +29,7 @@
 
   <!-- 0. Intro -->
   <section class="panel" data-step="intro">
-    <p class="eyebrow" style="color:var(--blue)">Move-Out Cleaning · <span data-area>Lawton, Fort Sill and nearby</span></p>
+    <p class="step-label">Lawton &amp; Fort Sill Move-Out Cleaning</p>
     <h1>Your Move-Out Clean, Priced in a Minute.</h1>
     <p class="sub">Flat pricing by bedroom. Photo documentation of every room is included, so you leave with proof of how you left it.</p>
     <span class="intro-price">From <span data-from>$199</span> <span data-tax>+ tax</span></span>
@@ -116,6 +115,10 @@
       </div>
       <p class="note info" id="emptyNote" hidden>Move-out cleans work best in an empty home. We clean around anything left behind, and the crew will confirm the plan on arrival.</p>
     </fieldset>
+    <label class="field q">
+      <span>Move-out or inspection date <em>(optional)</em></span>
+      <input id="moveDate" type="date" autocomplete="off">
+    </label>
     <fieldset class="q">
       <legend>Need any extras?</legend>
       <p class="hint">Optional. Priced by the crew on arrival, not added to your online total.</p>
@@ -153,10 +156,13 @@
       <li>Pay after the clean, once you've seen the work</li>
       <li id="extrasPromise" hidden>Extras you picked are priced on arrival, before any work</li>
     </ul>
-    <div class="actions-row" id="bookActions"><button class="btn btn-primary btn-block" type="button" data-next>Pick a Time</button></div>
-    <div class="actions-row" id="textActions" hidden><a class="btn btn-primary btn-block" data-sms="quote" href="#">Text Us to Book</a></div>
-    <p style="text-align:center;margin:14px 0 0"><a href="#" data-sms="quote" id="textAlt">Rather text us? Send your quote by text</a></p>
-    <div class="actions-row"><button class="back" type="button" data-back>Back</button></div>
+    <p class="alt-line" id="textAlt"><a href="#" data-sms="quote">Rather text us? Send your quote by text</a></p>
+    <p class="alt-line" id="callAlt">Rather talk? <a data-tel href="tel:+15802154212">Call <span data-phone>(580) 215-4212</span></a></p>
+    <div class="desk-book" id="deskBook" hidden>
+      <p>On a computer? Text or call <strong data-phone>(580) 215-4212</strong> from your phone. Copy your quote to paste into the text:</p>
+      <button class="btn btn-outline btn-block" type="button" id="copyQuote">Copy My Quote</button>
+    </div>
+    <div class="actions-row"><button class="back" type="button" data-back>Back</button><button class="btn btn-primary" id="bookActions" type="button" data-next>Pick a Time</button><a class="btn btn-primary" id="textActions" hidden data-sms="quote" href="#">Text Us to Book</a></div>
   </section>
 
   <!-- 6. Address -->
