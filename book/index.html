@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Book Your Move-Out Clean | Deposit Defense Cleaning</title>
+<meta name="description" content="See your move-out cleaning price in about a minute and pick a time. Flat pricing by bedroom, carpet cleaning add-on, photo documentation included. Lawton and Fort Sill.">
+<link rel="canonical" href="/book/">
+<meta name="theme-color" content="#070f20">
+<link rel="icon" href="/assets/favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/dd.css">
+</head>
+<body class="funnel-body">
+<a class="skip" href="#funnel">Skip to booking</a>
+
+<header class="funnel-top">
+  <a class="brand" href="/" aria-label="Deposit Defense Cleaning home">
+    <img src="/assets/dd-shield-sm.webp" alt="" width="40" height="32">
+    <span><strong>Deposit Defense</strong><small>Move-Out Cleaning</small></span>
+  </a>
+  <a class="funnel-call" data-tel href="tel:+15802154212">Call <span data-phone>(580) 215-4212</span></a>
+</header>
+
+<div class="progress" id="progress" hidden><span></span></div>
+
+<main id="funnel" tabindex="-1">
+
+  <!-- 0. Intro -->
+  <section class="panel" data-step="intro">
+    <p class="eyebrow" style="color:var(--blue)">Move-Out Cleaning · <span data-area>Lawton, Fort Sill and nearby</span></p>
+    <h1>Your Move-Out Clean, Priced in a Minute.</h1>
+    <p class="sub">Flat pricing by bedroom. Photo documentation of every room is included, so you leave with proof of how you left it.</p>
+    <span class="intro-price">From <span data-from>$199</span> <span data-tax>+ tax</span></span>
+    <ul class="promise">
+      <li>Inspection-focused clean of kitchens, baths, floors and detail points</li>
+      <li>Time-stamped photos and an invoice for your records</li>
+      <li>Carpet cleaning available at <span data-carpet>$50</span> per room</li>
+    </ul>
+    <div class="actions-row"><button class="btn btn-primary btn-block" id="startBtn" type="button">See My Price</button></div>
+    <div class="trust-row"><span>Veteran-owned</span><span>Insured</span><span>Pay after the clean</span></div>
+  </section>
+
+  <!-- 1. Bedrooms -->
+  <section class="panel" data-step="beds" hidden>
+    <p class="step-label">Step 1 of 4</p>
+    <h2>How Many Bedrooms?</h2>
+    <p class="sub">Your flat price is set by bedroom count. Bathrooms, kitchen and living areas are included.</p>
+    <div class="choices" id="bedChoices" role="group" aria-label="Bedrooms"></div>
+    <div class="actions-row"><button class="back" type="button" data-back>Back</button></div>
+  </section>
+
+  <!-- 1b. Large home: custom quote -->
+  <section class="panel" data-step="custom" hidden>
+    <h2>Let's Quote Your Home.</h2>
+    <p class="sub">Homes with 6 or more bedrooms get a quick custom quote so the crew and time are right. Text or call and we'll get back to you fast.</p>
+    <div class="grid">
+      <a class="btn btn-primary btn-block" data-sms="custom" href="#">Text Us for a Quote</a>
+      <a class="btn btn-outline btn-block" data-tel href="tel:+15802154212">Call <span data-phone>(580) 215-4212</span></a>
+    </div>
+    <div class="actions-row"><button class="back" type="button" data-back>Back</button></div>
+  </section>
+
+  <!-- 2. Carpet -->
+  <section class="panel" data-step="carpet" hidden>
+    <p class="step-label">Step 2 of 4</p>
+    <h2>Any Carpet to Clean?</h2>
+    <p class="sub">Many leases require professional carpet cleaning at move-out. Check yours. Skip this if the home has no carpet.</p>
+    <div class="q">
+      <div class="stepper">
+        <div class="lbl">Carpeted rooms<small><span data-carpet>$50</span> per room</small></div>
+        <div class="ctl">
+          <button type="button" id="carpetMinus" aria-label="One fewer carpeted room">−</button>
+          <output id="carpetOut" aria-live="polite">0</output>
+          <button type="button" id="carpetPlus" aria-label="One more carpeted room">+</button>
+        </div>
+      </div>
+    </div>
+    <div class="q" id="enzymeQ" hidden>
+      <div class="stepper">
+        <div class="lbl">Pet enzyme treatment<small>For pet odors and accidents. <span data-enzyme>$25</span> per room</small></div>
+        <div class="ctl">
+          <button type="button" id="enzymeMinus" aria-label="One fewer room with pet treatment">−</button>
+          <output id="enzymeOut" aria-live="polite">0</output>
+          <button type="button" id="enzymePlus" aria-label="One more room with pet treatment">+</button>
+        </div>
+      </div>
+    </div>
+    <p class="fine">Heavy stains and damage can't always come out. The crew will tell you before they start.</p>
+    <div class="live-total"><span>Running total</span><strong id="runTotal1">$0</strong></div>
+    <div class="actions-row"><button class="back" type="button" data-back>Back</button><button class="btn btn-primary" type="button" data-next>Continue</button></div>
+  </section>
+
+  <!-- 3. Quick facts -->
+  <section class="panel" data-step="facts" hidden>
+    <p class="step-label">Step 3 of 4</p>
+    <h2>A Few Quick Facts.</h2>
+    <p class="sub">So the crew shows up ready.</p>
+    <fieldset class="q">
+      <legend>Will the water and power be on?</legend>
+      <div class="choices" data-group="utilities">
+        <button class="choice" type="button" data-val="Yes">Yes</button>
+        <button class="choice" type="button" data-val="No">No</button>
+        <button class="choice" type="button" data-val="Not sure">Not Sure</button>
+      </div>
+      <p class="note warn" id="utilNote" hidden>We need running water and power to clean. Please keep them on through your cleaning day.</p>
+    </fieldset>
+    <fieldset class="q">
+      <legend>Will the home be empty?</legend>
+      <div class="choices" data-group="empty">
+        <button class="choice" type="button" data-val="Empty">Empty</button>
+        <button class="choice" type="button" data-val="Mostly empty">Mostly</button>
+        <button class="choice" type="button" data-val="Still furnished">Furnished</button>
+      </div>
+      <p class="note info" id="emptyNote" hidden>Move-out cleans work best in an empty home. We clean around anything left behind, and the crew will confirm the plan on arrival.</p>
+    </fieldset>
+    <fieldset class="q">
+      <legend>Need any extras?</legend>
+      <p class="hint">Optional. Priced by the crew on arrival, not added to your online total.</p>
+      <div id="extrasList"></div>
+    </fieldset>
+    <div class="actions-row"><button class="back" type="button" data-back>Back</button><button class="btn btn-primary" type="button" data-next id="factsNext" disabled>Continue</button></div>
+  </section>
+
+  <!-- 4. Contact gate -->
+  <section class="panel" data-step="contact" hidden>
+    <p class="step-label">Step 4 of 4</p>
+    <h2>Where Should We Send Your Price?</h2>
+    <p class="sub">Your price shows on the next screen. We'll text it to you too, and only contact you about this clean.</p>
+    <form id="contactForm" novalidate>
+      <div class="row2">
+        <label class="field"><span>First name</span><input id="first" autocomplete="given-name" required maxlength="80"><span class="err">Enter your first name.</span></label>
+        <label class="field"><span>Last name</span><input id="last" autocomplete="family-name" required maxlength="80"><span class="err">Enter your last name.</span></label>
+      </div>
+      <label class="field"><span>Mobile phone</span><input id="phone" type="tel" inputmode="tel" autocomplete="tel" required maxlength="22" placeholder="(580) 555-0123"><span class="err">Enter a 10-digit phone number.</span></label>
+      <label class="field"><span>Email <em>(your photos and invoice go here)</em></span><input id="email" type="email" inputmode="email" autocomplete="email" required maxlength="160" placeholder="you@example.com"><span class="err">Enter a valid email.</span></label>
+      <div class="actions-row"><button class="back" type="button" data-back>Back</button><button class="btn btn-primary" type="submit">Show My Price</button></div>
+    </form>
+  </section>
+
+  <!-- 5. Price -->
+  <section class="panel" data-step="price" hidden>
+    <p class="step-label">Your Price</p>
+    <h2 id="priceHead">Here's Your Price.</h2>
+    <div class="quote-card" style="margin-top:16px">
+      <div id="quoteLines"></div>
+      <div class="quote-total"><b>Total</b><span><strong id="quoteTotal">$0</strong><small data-tax>+ tax</small></span></div>
+    </div>
+    <ul class="promise">
+      <li>Your crew does a quick walkthrough on arrival and confirms the price with you before starting</li>
+      <li>Pay after the clean, once you've seen the work</li>
+      <li id="extrasPromise" hidden>Extras you picked are priced on arrival, before any work</li>
+    </ul>
+    <div class="actions-row" id="bookActions"><button class="btn btn-primary btn-block" type="button" data-next>Pick a Time</button></div>
+    <div class="actions-row" id="textActions" hidden><a class="btn btn-primary btn-block" data-sms="quote" href="#">Text Us to Book</a></div>
+    <p style="text-align:center;margin:14px 0 0"><a href="#" data-sms="quote" id="textAlt">Rather text us? Send your quote by text</a></p>
+    <div class="actions-row"><button class="back" type="button" data-back>Back</button></div>
+  </section>
+
+  <!-- 6. Address -->
+  <section class="panel" data-step="address" hidden>
+    <p class="step-label">Almost Done</p>
+    <h2>Where's the Home?</h2>
+    <form id="addressForm" novalidate>
+      <label class="field"><span>Street address</span><input id="addr" autocomplete="address-line1" required maxlength="180" placeholder="123 Main St, Apt 4"><span class="err">Enter the street address.</span></label>
+      <div class="row3">
+        <label class="field"><span>City</span><input id="city" autocomplete="address-level2" required maxlength="80"><span class="err">Enter the city.</span></label>
+        <label class="field"><span>ZIP</span><input id="zip" inputmode="numeric" autocomplete="postal-code" required maxlength="5" placeholder="73501"><span class="err">5-digit ZIP.</span></label>
+      </div>
+      <label class="field"><span>Anything we should know? <em>(optional)</em></span><textarea id="notes" maxlength="1000" placeholder="Gate code, lockbox, your landlord's checklist, inspection date..."></textarea></label>
+      <div class="actions-row"><button class="back" type="button" data-back>Back</button><button class="btn btn-primary" type="submit">Pick a Time</button></div>
+    </form>
+  </section>
+
+  <!-- 7. Time -->
+  <section class="panel" data-step="time" hidden>
+    <p class="step-label">Pick a Time</p>
+    <h2>When Should We Come?</h2>
+    <p class="sub">Times are arrival windows, Central time. Book before your inspection date.</p>
+    <div id="dateGrid" class="dates" role="group" aria-label="Available dates"><p class="loading" style="grid-column:1/-1">Loading open times…</p></div>
+    <div id="timeWrap" hidden>
+      <p class="q-title" style="font-weight:800;margin:20px 0 4px" id="timeHead">Times</p>
+      <div id="timeGrid" class="times" role="group" aria-label="Available times"></div>
+    </div>
+    <p class="note bad" id="slotError" hidden></p>
+    <div class="actions-row"><button class="back" type="button" data-back>Back</button><button class="btn btn-primary" type="button" data-next id="timeNext" disabled>Continue</button></div>
+  </section>
+
+  <!-- 8. Review -->
+  <section class="panel summary" data-step="review" hidden>
+    <p class="step-label">Review</p>
+    <h2>Confirm Your Clean.</h2>
+    <div class="quote-card" style="margin-top:16px"><dl id="summaryList"></dl></div>
+    <p class="fine" style="margin-top:12px">Your crew confirms the price in a quick walkthrough on arrival. You pay after the clean. Need to change something? Text or call us anytime.</p>
+    <div class="hp" aria-hidden="true"><label>Company website <input id="companyWebsite" tabindex="-1" autocomplete="off"></label></div>
+    <p class="note bad" id="bookError" hidden></p>
+    <div class="actions-row"><button class="back" type="button" data-back>Back</button><button class="btn btn-primary" type="button" id="bookBtn">Book My Clean</button></div>
+  </section>
+
+</main>
+
+<p class="funnel-foot">We provide cleaning and documentation. We can't promise a deposit refund or inspection result; landlords decide based on the lease and the home's condition. Prices are <span data-tax>+ tax</span>. <a href="/">Back to home</a></p>
+
+<script src="/js/dd-config.js"></script>
+<script src="/js/dd-book.js"></script>
+</body>
+</html>

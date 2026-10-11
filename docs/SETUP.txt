@@ -1,0 +1,50 @@
+DEPOSIT DEFENSE CLEANING: SETUP
+================================
+
+WHAT'S IN THIS SITE
+  /                         Homepage (pricing, what's included, FAQ)
+  /book/                    The funnel: bedrooms > carpet > quick facts > contact > price > address > time > book
+  /booking-confirmation.html
+  /404.html
+  js/dd-config.js           THE ONE FILE for prices, phone, and the booking API address
+
+The site works the moment you upload it. Until step 2 below is done, /book shows
+the customer their price and a "Text Us to Book" button with the quote filled in.
+
+1. DEPLOY THE SITE (Cloudflare Pages)
+   Upload this folder as a new Pages project (or replace the old Deposit Defense
+   project). No build step. Add your domain under Custom domains.
+
+2. TURN ON ONLINE BOOKING (the Worker)
+   a. Cloudflare > Workers > Create Worker. Name it e.g. deposit-defense-booking.
+      Paste deposit-defense-booking-worker.js and Deploy.
+      This is a SEPARATE Worker. Red Prairie's Worker is not touched.
+   b. Worker > Settings > Variables:
+        SITE_ORIGIN           https://YOUR-DEPOSIT-DEFENSE-DOMAIN.com   (required)
+        GHL_PRIVATE_TOKEN     (secret) GoHighLevel private integration token
+        GHL_LOCATION_ID       GoHighLevel location/sub-account ID
+        GHL_CALENDAR_ID       the calendar Deposit Defense jobs book into
+        GHL_ASSIGNED_USER_ID  the user appointments are assigned to
+      Optional:
+        GHL_TIMEZONE          defaults to America/Chicago
+        BRAND_NAME            defaults to "Deposit Defense Cleaning"
+        BRAND_TAG             defaults to "deposit-defense" (added to every lead and booking)
+        ALLOWED_ORIGINS       extra comma-separated origins (e.g. a pages.dev preview URL)
+   c. Open https://<worker-url>/health to check it's running.
+   d. In js/dd-config.js set:   api: "https://<worker-url>"
+      Re-upload the site. /book now shows "Pick a Time" and books into GoHighLevel.
+
+3. CHANGING PRICES
+   Edit js/dd-config.js only (bedroomPrices, carpetPerRoom, petEnzymePerRoom).
+   The homepage, funnel and confirmation all read from it.
+   Also update the matching numbers in the homepage's JSON-LD block (top of
+   index.html) so Google shows the same prices.
+
+TAGS IN GOHIGHLEVEL
+   Bookings:  move-out, deposit-defense
+   Saw price, didn't book:  website-partial-lead, price-viewed-no-booking, deposit-defense
+   (the "no booking" tags are removed automatically when that person books)
+
+4. DOMAIN PLACEHOLDER
+   robots.txt and sitemap.xml use depositdefensecleaning.com. Replace with your
+   real domain if it's different.

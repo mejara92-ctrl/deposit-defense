@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>You're Booked | Deposit Defense Cleaning</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#070f20">
+<link rel="icon" href="/assets/favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/dd.css">
+</head>
+<body class="funnel-body">
+<header class="funnel-top">
+  <a class="brand" href="/" aria-label="Deposit Defense Cleaning home">
+    <img src="/assets/dd-shield-sm.webp" alt="" width="40" height="32">
+    <span><strong>Deposit Defense</strong><small>Move-Out Cleaning</small></span>
+  </a>
+  <a class="funnel-call" data-tel href="tel:+15802154212">Call <span data-phone>(580) 215-4212</span></a>
+</header>
+<main class="panel summary" style="margin-top:12px">
+  <p class="step-label" style="color:var(--ok)">Booking Confirmed</p>
+  <h1 id="cHead">You're Booked.</h1>
+  <p class="sub">We'll text you a reminder before your cleaning day.</p>
+  <div class="quote-card" id="cCard" hidden><dl id="cList"></dl></div>
+  <h2 style="font-size:26px;margin:24px 0 10px">Before We Arrive</h2>
+  <ul class="promise">
+    <li>Keep the water and power on through your cleaning day</li>
+    <li>Move out as much as you can; empty rooms clean best</li>
+    <li>Have a landlord or housing checklist? Text it to us</li>
+    <li>Your crew walks through on arrival and confirms the price with you before starting</li>
+    <li>Pay after the clean. Your photos and invoice come by email</li>
+  </ul>
+  <div class="actions-row" style="flex-wrap:wrap">
+    <a class="btn btn-primary" style="flex:1" data-sms href="sms:+15802154212">Text Us</a>
+    <a class="btn btn-outline" style="flex:1" href="/">Back to Home</a>
+  </div>
+  <p class="fine" style="margin-top:16px">Need to reschedule? Text or call <span data-phone>(580) 215-4212</span>.</p>
+</main>
+<script src="/js/dd-config.js"></script>
+<script src="/js/dd-site.js"></script>
+<script>
+(function () {
+  var c = null;
+  try { c = JSON.parse(sessionStorage.getItem("dd-confirm") || "null"); } catch (e) {}
+  if (!c) return;
+  var esc = function (s) { return String(s || "").replace(/[&<>"]/g, function (x) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[x]; }); };
+  if (c.first) document.getElementById("cHead").textContent = "You're Booked, " + c.first + ".";
+  var rows = [["When", c.when], ["Where", c.where], ["Price", (c.total || "") + " " + (c.tax || "")]].filter(function (r) { return r[1] && r[1].trim(); });
+  document.getElementById("cList").innerHTML = rows.map(function (r) { return "<dt>" + r[0] + "</dt><dd>" + esc(r[1]) + "</dd>"; }).join("");
+  document.getElementById("cCard").hidden = !rows.length;
+})();
+</script>
+</body>
+</html>

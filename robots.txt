@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /booking-confirmation.html
+Sitemap: https://depositdefensecleaning.com/sitemap.xml
